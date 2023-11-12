@@ -17,11 +17,11 @@ public class TestController {
     public List<TestVo> test(){
         return testService.selectAllList();
     }
-
     @GetMapping("/api/hello")
     public String hello(){
         String str = "hello world!";
         return str;
     }
+
 
 }
