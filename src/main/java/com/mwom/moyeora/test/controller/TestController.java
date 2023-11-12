@@ -15,7 +15,7 @@ public class TestController {
 
     @GetMapping("/test")
     public List<TestVo> test(){
-       return testService.selectAllList();
+        return testService.selectAllList();
     }
 
     @GetMapping("/api/hello")
@@ -23,5 +23,5 @@ public class TestController {
         String str = "hello world!";
         return str;
     }
-//test
+
 }
