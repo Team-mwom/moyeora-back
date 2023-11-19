@@ -3,8 +3,7 @@ package com.mwom.moyeora.test.controller;
 import com.mwom.moyeora.test.service.TestService;
 import com.mwom.moyeora.test.vo.TestVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,9 +12,16 @@ public class TestController {
     @Autowired
     private TestService testService;
 
-    @GetMapping("/test")
-    public List<TestVo> test(){
+    @GetMapping("/selectAllList")
+    public List<TestVo> selectAllList(){
         return testService.selectAllList();
+    }
+
+    @ResponseBody
+    @PostMapping("/insertInfo")
+    public String insertInfo(@RequestBody TestVo testVo){
+        System.out.println(testVo);
+        return "";
     }
     @GetMapping("/api/hello")
     public String hello(){
