@@ -18,6 +18,7 @@ public class TestService {
     @Autowired
     private TestMapper testMapper;
 
+    @Autowired
     private final TestRepository testRepository;
 
     @PersistenceContext
@@ -38,8 +39,8 @@ public class TestService {
 
     }
 
-//    public void insertTestInfo(TestEntity testEntity){
-//        testRepository.insertTestInfo(testEntity);
-//    }
+    public void insertTestInfo(TestEntity testEntity){
+       testRepository.insertTestInfo(testEntity);
+    }
 
 }

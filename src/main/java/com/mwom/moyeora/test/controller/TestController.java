@@ -30,11 +30,11 @@ public class TestController {
 
 
     @PostMapping("/insertTestInfo")
-    public String insertTestInfo(@RequestBody TestEntity testEntity){
+    public boolean insertTestInfo(@RequestBody TestEntity testEntity){
 
         System.out.println(testEntity);
-        //testService.insertTestInfo(testEntity);
-        return "";
+        testService.insertTestInfo(testEntity);
+        return true;
     }
     @GetMapping("/api/hello")
     public String hello(){
