@@ -1,7 +1,7 @@
 package com.mwom.moyeora.test.controller;
 
 import com.mwom.moyeora.test.entity.TestEntity;
-import com.mwom.moyeora.test.repository.TestRepository;
+import com.mwom.moyeora.test.repositorys.TestRepository;
 import com.mwom.moyeora.test.service.TestService;
 import com.mwom.moyeora.test.vo.TestVo;
 import lombok.RequiredArgsConstructor;
@@ -14,32 +14,26 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
+@ResponseBody
 public class TestController {
     @Autowired
     private TestService testService;
 
-    private final TestRepository testRepository;
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
 
-//    @GetMapping("/selectAllList")
-//    public List<TestVo> selectAllList(){
-//        return testService.selectAllList();
-//    }
+    @GetMapping("/selectTestAllList")
+    public List<?> selectTestAllList(boolean mybatis){
+        return testService.selectTestAllList(mybatis);
 
-    @GetMapping("/selectAllList")
-    public List<TestEntity> selectAllList(){
-        return testRepository.selectAllList();
     }
 
 
-    @ResponseBody
-    @PostMapping("/insertInfo")
-    public String insertInfo(@RequestBody TestVo testVo){
-        System.out.println(testVo);
+
+    @PostMapping("/insertTestInfo")
+    public String insertTestInfo(@RequestBody TestEntity testEntity){
+
+        System.out.println(testEntity);
+        //testService.insertTestInfo(testEntity);
         return "";
     }
     @GetMapping("/api/hello")
