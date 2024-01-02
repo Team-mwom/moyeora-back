@@ -8,5 +8,5 @@ import java.util.List;
 @Repository
 @Mapper
 public interface TestMapper {
-    List<TestVo> selectAllList();
+    List<TestVo> selectTestAllList();
 }

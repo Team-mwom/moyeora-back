@@ -14,12 +14,12 @@ public class TestEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)//프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
     private int idx;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     private  int age;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     private String name,family;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     private float weight;
 }
