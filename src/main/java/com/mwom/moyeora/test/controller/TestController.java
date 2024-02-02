@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @ResponseBody
+@RequestMapping("/api")
 public class TestController {
     @Autowired
     private TestService testService;
@@ -36,12 +37,7 @@ public class TestController {
         testService.insertTestInfo(testEntity);
         return true;
     }
-    @GetMapping("/api/hello")
-    public String hello(){
-        String str = "hello world!";
-        return str;
 
-    }
 
 
 }
