@@ -31,11 +31,8 @@ public class TestController {
 
 
     @PostMapping("/insertTestInfo")
-    public boolean insertTestInfo(@RequestBody TestEntity testEntity){
-
-        System.out.println(testEntity);
-        testService.insertTestInfo(testEntity);
-        return true;
+    public TestEntity insertTestInfo(@RequestBody TestEntity testEntity){
+        return testService.insertTestInfo(testEntity);
     }
 
 

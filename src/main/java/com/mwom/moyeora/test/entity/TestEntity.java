@@ -9,6 +9,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Data
+@Table(name="test_table")
 public class TestEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
