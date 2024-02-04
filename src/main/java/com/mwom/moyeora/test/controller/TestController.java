@@ -36,5 +36,10 @@ public class TestController {
     }
 
 
+    @GetMapping("/deleteTestInfo")
+    public void deleteTestInfo(int idx){
+        testService.deleteTestInfo(idx);
+
+    }
 
 }

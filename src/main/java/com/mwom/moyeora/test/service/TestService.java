@@ -41,6 +41,11 @@ public class TestService {
 
     public TestEntity insertTestInfo(TestEntity testEntity){
        return testRepository.save(testEntity);
+
     }
 
+    public void deleteTestInfo(int idx){
+        testRepository.deleteTestEntityByidx(idx);
+
+    }
 }

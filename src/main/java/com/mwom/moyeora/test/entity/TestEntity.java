@@ -3,12 +3,14 @@ package com.mwom.moyeora.test.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Data
+@Transactional
 @Table(name="test_table")
 public class TestEntity {
     @Id
