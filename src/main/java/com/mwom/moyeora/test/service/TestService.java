@@ -48,4 +48,11 @@ public class TestService {
         testRepository.deleteTestEntityByidx(idx);
 
     }
+
+    public void updateTestInfo(TestEntity entity){
+        testRepository.updateTestInfo(entity);
+
+    }
+
+
 }

@@ -41,5 +41,11 @@ public class TestController {
         testService.deleteTestInfo(idx);
 
     }
+    @PostMapping("/updateTestInfo")
+    public void updateTestInfo(@RequestBody TestEntity entity){
+        testService.updateTestInfo(entity);
+
+    }
+
 
 }
