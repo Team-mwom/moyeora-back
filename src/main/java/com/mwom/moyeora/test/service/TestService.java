@@ -35,12 +35,24 @@ public class TestService {
             return testMapper.selectTestAllList();
         }
         System.out.println("JPA");
-        return testRepository.selectTestAllList();
+        return testRepository.findAll();
 
     }
 
-    public void insertTestInfo(TestEntity testEntity){
-       testRepository.insertTestInfo(testEntity);
+    public TestEntity insertTestInfo(TestEntity testEntity){
+       return testRepository.save(testEntity);
+
     }
+
+    public void deleteTestInfo(int idx){
+        testRepository.deleteTestEntityByidx(idx);
+
+    }
+
+    public void updateTestInfo(TestEntity entity){
+        testRepository.updateTestInfo(entity);
+
+    }
+
 
 }

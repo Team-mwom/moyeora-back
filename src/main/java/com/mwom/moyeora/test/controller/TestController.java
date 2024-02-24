@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @ResponseBody
+@RequestMapping("/api")
 public class TestController {
     @Autowired
     private TestService testService;
@@ -30,16 +31,19 @@ public class TestController {
 
 
     @PostMapping("/insertTestInfo")
-    public boolean insertTestInfo(@RequestBody TestEntity testEntity){
-
-        System.out.println(testEntity);
-        testService.insertTestInfo(testEntity);
-        return true;
+    public TestEntity insertTestInfo(@RequestBody TestEntity testEntity){
+        return testService.insertTestInfo(testEntity);
     }
-    @GetMapping("/api/hello")
-    public String hello(){
-        String str = "hello world!";
-        return str;
+
+
+    @GetMapping("/deleteTestInfo")
+    public void deleteTestInfo(int idx){
+        testService.deleteTestInfo(idx);
+
+    }
+    @PostMapping("/updateTestInfo")
+    public void updateTestInfo(@RequestBody TestEntity entity){
+        testService.updateTestInfo(entity);
 
     }
 
