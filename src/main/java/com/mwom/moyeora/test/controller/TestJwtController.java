@@ -16,7 +16,7 @@ public class TestJwtController {
 
   private final MemberService memberService;
 
-  @PostMapping("/login")
+  @PostMapping("/all/login")
   public TokenInfo login(@RequestBody MemberLoginRequestDto memberLoginRequestDto) {
 
     String memberId = memberLoginRequestDto.getMemberId();
@@ -35,8 +35,12 @@ public class TestJwtController {
 //
 //    System.out.println(signInDto);
 //  }
-  @PostMapping("/isSingnIn")
-  public String test() {
+  @PostMapping("/admin/isAdmin")
+  public String isAdmin() {
+    return "success";
+  }
+  @PostMapping("/user/isUser")
+  public String isUser() {
     return "success";
   }
 
