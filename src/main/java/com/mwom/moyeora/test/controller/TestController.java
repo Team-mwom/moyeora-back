@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @ResponseBody
-@RequestMapping("/api")
+@RequestMapping("/api/all")
 public class TestController {
     @Autowired
     private TestService testService;
