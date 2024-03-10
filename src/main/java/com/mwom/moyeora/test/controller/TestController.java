@@ -1,15 +1,9 @@
 package com.mwom.moyeora.test.controller;
 
 import com.mwom.moyeora.test.entity.TestEntity;
-import com.mwom.moyeora.test.repositorys.TestRepository;
 import com.mwom.moyeora.test.service.TestService;
-import com.mwom.moyeora.test.vo.TestVo;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import java.util.List;
 
@@ -19,6 +13,8 @@ import java.util.List;
 public class TestController {
     @Autowired
     private TestService testService;
+
+
 
 
 
@@ -46,6 +42,9 @@ public class TestController {
         testService.updateTestInfo(entity);
 
     }
+
+
+
 
 
 }
