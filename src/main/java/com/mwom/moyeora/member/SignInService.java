@@ -14,12 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class SignInService {
 
-  private final MemberRepository memberRepository;
+ 
   private final AuthenticationManagerBuilder authenticationManagerBuilder;
   private final JwtTokenProvider jwtTokenProvider;
 
   @Transactional
-  public TokenInfo login(String kakaoId) {
+  public TokenInfo signIn(String kakaoId) {
 
       // 1. Login ID/PW 를 기반으로 Authentication 객체 생성
       // 이때 authentication 는 인증 여부를 확인하는 authenticated 값이 false

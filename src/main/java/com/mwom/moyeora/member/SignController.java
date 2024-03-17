@@ -14,28 +14,42 @@ import java.io.IOException;
 @ResponseBody
 @RequiredArgsConstructor
 @RequestMapping("/api")
-public class SignInController {
+public class SignController {
 
   @Autowired
   private SignInService signInService;
+  @Autowired
+  private  SignUpService signUpService;
 
   @Autowired
   private KakaoService kakaoService;
 
 
 
-  @GetMapping("/all/signIn")
-  public TokenInfo signIn(@Param("code") String code) throws IOException {
-    String kakaoId = kakaoService.getKaKaoAccessToken(code);
 
-    return signInService.login(kakaoId);
+  @GetMapping("/all/kakaoToken")
+  public String kakaoToken(@Param("code") String code) throws IOException {
+    return  kakaoService.getKaKaoAccessToken(code);
   }
+  @GetMapping("/all/signIn")
+  public TokenInfo signIn(@Param("kakaoId") String kakaoId) throws IOException {
+
+    return signInService.signIn(kakaoId);
+  }
+
+
   @PostMapping("/admin/isAdmin")
   public String isAdmin() {
     return "success";
   }
   @PostMapping("/user/isUser")
   public String isUser() {
+    return "success";
+  }
+
+  @PostMapping("all/signup")
+  public String signUp(@RequestBody MemberEntity memberEntity){
+    signUpService.signUp(memberEntity);
     return "success";
   }
 
