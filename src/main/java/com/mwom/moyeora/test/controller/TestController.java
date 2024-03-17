@@ -25,7 +25,6 @@ public class TestController {
     @GetMapping("/selectTestAllList")
     public List<?> selectTestAllList(boolean mybatis){
         return testService.selectTestAllList(mybatis);
-
     }
 
 
