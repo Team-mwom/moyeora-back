@@ -1,4 +1,4 @@
-package com.mwom.moyeora.test.jwt;
+package com.mwom.moyeora.member.jwt;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

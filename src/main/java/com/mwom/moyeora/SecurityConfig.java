@@ -1,7 +1,7 @@
 package com.mwom.moyeora;
 
-import com.mwom.moyeora.test.jwt.JwtAuthenticationFilter;
-import com.mwom.moyeora.test.jwt.JwtTokenProvider;
+import com.mwom.moyeora.member.jwt.JwtAuthenticationFilter;
+import com.mwom.moyeora.member.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +12,6 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 //public class SecurityConfig {
@@ -46,8 +45,9 @@ public class SecurityConfig {
           .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
           .and()
           .authorizeRequests()
-          .antMatchers("/**").permitAll()
-          .antMatchers("/api/isSingnIn").hasRole("USER")
+          .antMatchers("/api/all/**").permitAll()
+          .antMatchers("/api/user/**").hasAnyRole("USER","ADMIN")
+          .antMatchers("/api/admin/**").hasRole("ADMIN")
           .anyRequest().authenticated()
           .and()
           .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);

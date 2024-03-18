@@ -24,4 +24,10 @@ public class MainController {
         model.addAttribute("moyeoraList", moyeoraList);
         return "test 중";
     }
+
+    @GetMapping("/searchMain")
+    public void searchMain(String word){
+        System.out.println("[word] ======> " + word);
+        //return testService.selectTestAllList(mybatis);
+    }
 }
