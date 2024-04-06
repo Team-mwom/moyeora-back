@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
@@ -28,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
   // 해당하는 User 의 데이터가 존재한다면 UserDetails 객체로 만들어서 리턴
   private UserDetails createUserDetails(MemberEntity member) {
     return User.builder()
-      .username(member.getKakao())
+      .username(member.getMemberSeq()+"")
       .password(passwordEncoder.encode(member.getKakao()))
       .roles(member.getRole())
       .build();

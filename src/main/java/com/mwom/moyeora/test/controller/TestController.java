@@ -1,10 +1,13 @@
 package com.mwom.moyeora.test.controller;
 
+import com.mwom.moyeora.member.MemberSeq;
 import com.mwom.moyeora.test.entity.TestEntity;
 import com.mwom.moyeora.test.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -18,8 +21,10 @@ public class TestController {
 
 
 
-    @GetMapping("/selectTestAllList")
-    public List<?> selectTestAllList(boolean mybatis){
+    @GetMapping ("/selectTestAllList")
+    public List<?> selectTestAllList(boolean mybatis, HttpSession session){
+        System.out.println(session.getAttribute("member"));
+
         return testService.selectTestAllList(mybatis);
     }
 
