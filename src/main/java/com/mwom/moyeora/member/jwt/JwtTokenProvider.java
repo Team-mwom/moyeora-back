@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 public class JwtTokenProvider {
 
   private final Key key;
+  private final  long expiresTime = 50000000; //access토큰 만료 시간
 
   public JwtTokenProvider(@Value("${jwt.secret}") String secretKey) {
     byte[] keyBytes = Decoders.BASE64.decode(secretKey);
@@ -39,7 +41,7 @@ public class JwtTokenProvider {
 
     long now = (new Date()).getTime();
     // Access Token 생성
-    Date accessTokenExpiresIn = new Date(now + 86400000);
+    Date accessTokenExpiresIn = new Date(now + expiresTime);
     String accessToken = Jwts.builder()
       .setSubject(authentication.getName())
       .claim("auth", authorities)
@@ -49,7 +51,7 @@ public class JwtTokenProvider {
 
     // Refresh Token 생성
     String refreshToken = Jwts.builder()
-      .setExpiration(new Date(now + 86400000))
+      .setExpiration(new Date(now + 1000*60*60*24*30))
       .signWith(key, SignatureAlgorithm.HS256)
       .compact();
 
@@ -60,6 +62,31 @@ public class JwtTokenProvider {
       .build();
   }
 
+
+  public TokenInfo generateToken(Authentication authentication,String refreshToken) {
+    // 권한 가져오기
+    String authorities = authentication.getAuthorities().stream()
+      .map(GrantedAuthority::getAuthority)
+      .collect(Collectors.joining(","));
+
+    long now = (new Date()).getTime();
+    // Access Token 생성
+    Date accessTokenExpiresIn = new Date(now + expiresTime);
+    String accessToken = Jwts.builder()
+      .setSubject(authentication.getName())
+      .claim("auth", authorities)
+      .setExpiration(accessTokenExpiresIn)
+      .signWith(key, SignatureAlgorithm.HS256)
+      .compact();
+
+
+
+    return TokenInfo.builder()
+      .grantType("Bearer")
+      .accessToken(accessToken)
+      .refreshToken(refreshToken)
+      .build();
+  }
   // JWT 토큰을 복호화하여 토큰에 들어있는 정보를 꺼내는 메서드
   public Authentication getAuthentication(String accessToken) {
     // 토큰 복호화
@@ -86,15 +113,19 @@ public class JwtTokenProvider {
       Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
       return true;
     } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
-      log.info("Invalid JWT Token", e);
+      //log.info("Invalid JWT Token", e);
+      throw new JwtException("invalid");
     } catch (ExpiredJwtException e) {
-      log.info("Expired JWT Token", e);
+      //log.info("Expired JWT Token", e);
+      throw new JwtException("expired");
     } catch (UnsupportedJwtException e) {
-      log.info("Unsupported JWT Token", e);
+      //log.info("Unsupported JWT Token", e);
+      throw new JwtException("unsupported");
     } catch (IllegalArgumentException e) {
-      log.info("JWT claims string is empty.", e);
+      //log.info("JWT claims string is empty.", e);
+      throw new JwtException("empty");
     }
-    return false;
+
   }
 
   private Claims parseClaims(String accessToken) {

@@ -20,15 +20,20 @@ import javax.transaction.Transactional;
 @DynamicUpdate
 @Table(name="TB_MEMBER")
 public class MemberEntity {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)//프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
-  private int member_seq;
+  @Column(name = "member_seq")
+  private int memberSeq;
 
   @Column(nullable = true, length = 50)
   private String role,name,nickName,email;
 
-  @Column(nullable = true, length = 20)
+  @Column(nullable = true, length = 50)
   private String kakao;
+
+  @Column(nullable = true, length = 50)
+  private String refreshToken;
 
   @Column(nullable = true, length = 11)
   private int reg_id,mod_id;
