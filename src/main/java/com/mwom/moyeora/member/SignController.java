@@ -83,4 +83,12 @@ public class SignController {
     return signInService.reissue(refreshToken);
   }
 
+  @GetMapping("all/signUp/checkNickName")
+  public boolean checkNickName(String nickName){
+
+    return signUpService.checkNickName(nickName);
+  }
+
+
 }
+

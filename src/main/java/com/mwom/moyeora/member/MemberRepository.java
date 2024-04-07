@@ -20,4 +20,7 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
 
   MemberEntity findTopByRefreshToken(String refreshToken);
 
+  MemberEntity findTopByNickName(String nickName);
+
+
 }
