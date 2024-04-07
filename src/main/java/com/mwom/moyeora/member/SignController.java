@@ -6,8 +6,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
@@ -48,8 +52,9 @@ public class SignController {
     return tokenInfo;
   }
   @PostMapping("/user/getMyInfo")
-  public MemberEntity getMyInfo (){
+  public MemberEntity getMyInfo (){//로그인시 회원의 기본 정보를 프론트 단에 저장하기 위함
     MemberEntity entity = signInService.selectMemberInfo(MemberSeq.getCurrentMemberSeq());
+    //포함 되지 말아야 할 정보
     entity.setMemberSeq(0);
     entity.setKakao(null);
     entity.setRefreshToken(null);
@@ -72,7 +77,6 @@ public class SignController {
   public String signUp(@RequestBody MemberEntity memberEntity){
     signUpService.signUp(memberEntity);
 
-
     return "success";
   }
 
@@ -89,6 +93,11 @@ public class SignController {
     return signUpService.checkNickName(nickName);
   }
 
+  @GetMapping("all/signOut")
+  public  String signOut (HttpServletRequest request, HttpServletResponse response){
+    new SecurityContextLogoutHandler().logout(request,response,SecurityContextHolder.getContext().getAuthentication());
+    return "success";
+  }
 
 }
 
