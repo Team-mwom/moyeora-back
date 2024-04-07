@@ -26,7 +26,6 @@ public class TestController {
         System.out.println(session.getAttribute("member"));
 
         return testService.selectTestAllList(mybatis);
-
     }
 
 
