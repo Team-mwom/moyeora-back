@@ -26,4 +26,13 @@ public class SignUpService {
 
 
   }
+
+  @Transactional
+  public boolean checkNickName(String nickName) {
+  if(memberRepository.findTopByNickName(nickName)==null){
+    return true;
+  }
+  return false;
+
+  }
 }
