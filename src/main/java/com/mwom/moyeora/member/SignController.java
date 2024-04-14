@@ -44,6 +44,7 @@ public class SignController {
     //카카오 아이디를 통해 jwt로 토큰을 생성하며 refreshToken은 db에 저장된다.
     TokenInfo tokenInfo =signInService.signIn(kakaoId);
     MemberEntity memberEntity = new MemberEntity();
+
     memberEntity.setKakao(kakaoId);
     memberEntity.setRefreshToken(tokenInfo.getRefreshToken());
     signInService.updateRefreshToken(memberEntity);
@@ -55,28 +56,20 @@ public class SignController {
   public MemberEntity getMyInfo (){//로그인시 회원의 기본 정보를 프론트 단에 저장하기 위함
     MemberEntity entity = signInService.selectMemberInfo(MemberSeq.getCurrentMemberSeq());
     //포함 되지 말아야 할 정보
+    System.out.println(entity);
+    System.out.println("entity = " + entity);
     entity.setMemberSeq(0);
     entity.setKakao(null);
     entity.setRefreshToken(null);
+
     return entity;
-  }
-
-  @PostMapping("/admin/isAdmin")
-  public String isAdmin() {
-
-    return "success";
-  }
-  @PostMapping("/user/isUser")
-  public String isUser() {
-    System.out.println(MemberSeq.getCurrentMemberSeq());
-    return "success";
 
   }
 
   @PostMapping("all/signup")
   public String signUp(@RequestBody MemberEntity memberEntity){
-    signUpService.signUp(memberEntity);
 
+    signUpService.signUp(memberEntity);
     return "success";
   }
 
@@ -99,5 +92,17 @@ public class SignController {
     return "success";
   }
 
+
+  @PostMapping("/admin/isAdmin")
+  public String isAdmin() {
+
+    return "success";
+  }
+  @PostMapping("/user/isUser")
+  public String isUser() {
+    System.out.println(MemberSeq.getCurrentMemberSeq());
+    return "success";
+
+  }
 }
 

@@ -22,7 +22,7 @@ import javax.transaction.Transactional;
 public class MemberEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)//프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "member_seq")
   private int memberSeq;
 
@@ -39,6 +39,11 @@ public class MemberEntity {
   private int reg_id,mod_id;
 
   @Column(nullable = true, length = 20)
-
   private String reg_dt,mod_dt;
+
+  @OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+  @JoinColumn(name="member_seq")
+  private MemberInfoEntity memberInfoEntity;
+
+
 }
