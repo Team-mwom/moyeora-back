@@ -1,6 +1,7 @@
 package com.mwom.moyeora.member;
 
 import com.mwom.moyeora.member.jwt.TokenInfo;
+import com.mwom.moyeora.member.sms.SMSService;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -31,6 +33,8 @@ public class SignController {
   @Autowired
   private KakaoService kakaoService;
 
+  @Autowired
+  private SMSService smsService;
 
 
 
@@ -68,7 +72,7 @@ public class SignController {
 
   @PostMapping("all/signup")
   public String signUp(@RequestBody MemberEntity memberEntity){
-
+    System.out.println("memberEntity = " + memberEntity);
     signUpService.signUp(memberEntity);
     return "success";
   }
@@ -103,6 +107,13 @@ public class SignController {
     System.out.println(MemberSeq.getCurrentMemberSeq());
     return "success";
 
+  }
+
+  @PostMapping("/all/sendsms")
+  public String SendSMS(@RequestBody Map<String,String> data){
+   smsService.send(data.get("phoneNumber"),data.get("authNumber"));
+
+    return "seccess";
   }
 }
 
