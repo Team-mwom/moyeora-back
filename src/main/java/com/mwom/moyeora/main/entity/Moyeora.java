@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 @NoArgsConstructor
-@Entity
 @Table(name = "TB_MOYEORA")
 public class Moyeora extends BaseEntity {
 
