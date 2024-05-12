@@ -91,7 +91,8 @@ public class SignController {
   }
 
   @GetMapping("all/signOut")
-  public  String signOut (HttpServletRequest request, HttpServletResponse response){
+  public  String signOut (HttpServletRequest request, HttpServletResponse response) {
+
     new SecurityContextLogoutHandler().logout(request,response,SecurityContextHolder.getContext().getAuthentication());
     return "success";
   }
