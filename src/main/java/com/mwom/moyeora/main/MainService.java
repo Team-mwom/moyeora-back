@@ -1,19 +1,23 @@
 package com.mwom.moyeora.main;
 
+import com.mwom.moyeora.domain.entity.Moyeora;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class MainService {
-
-    @Autowired
     private final MainRepository mainRepository;
 
-    public void mainSearch(String word){
+    public List<Moyeora> selectTodayMoyeoraList() {
+        List<Moyeora> moyeoraList = mainRepository.findTop4ByOrderByRegDtDesc();
+        return moyeoraList;
+    }
+    public void mainSearch(String word) {
         System.out.println("word = " + word);
     }
+
 }
