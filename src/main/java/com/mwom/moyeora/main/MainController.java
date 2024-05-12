@@ -1,6 +1,7 @@
 package com.mwom.moyeora.main;
 
 import com.mwom.moyeora.domain.entity.Moyeora;
+import com.mwom.moyeora.moyeora.MoyeoraVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
@@ -10,19 +11,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @ResponseBody
 @RequiredArgsConstructor
-@RequestMapping("/api/main")
+@RequestMapping("/api/all/main")
 public class MainController {
     private final MainService mainService;
 
     @GetMapping()
-    public String selectTodayMoyeoraList(Model model, Pageable pageable) {
+    public List<MoyeoraVo> selectTodayMoyeoraList(Model model, Pageable pageable) {
         List<Moyeora> moyeoraList = mainService.selectTodayMoyeoraList(pageable);
-        model.addAttribute("moyeoraList", moyeoraList);
-        return "test 중";
+
+        List<MoyeoraVo> moyeoraVoList = moyeoraList.stream()
+                .map(m -> new MoyeoraVo(m))
+                .collect(Collectors.toList());
+
+        model.addAttribute("moyeoraVoList", moyeoraVoList);
+        return moyeoraVoList;
     }
 
     @GetMapping("/searchMain")

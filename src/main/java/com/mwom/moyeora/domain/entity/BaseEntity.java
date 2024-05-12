@@ -15,19 +15,18 @@ import java.time.LocalDateTime;
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
-public abstract class AuditingFields {
+public abstract class BaseEntity {
 //    @CreatedBy
     @Column(nullable = false, updatable = false)
     private String regId;
 
     @CreatedDate
-    @Column(nullable = false, updatable = false, name = "REG_DT")
+    @Column(nullable = false, updatable = false)
     private LocalDateTime regDt;
 
 //    @LastModifiedBy
     private String modId;
 
     @LastModifiedDate
-    @Column(name = "MOD_DT")
     protected LocalDateTime modDt;
 }
