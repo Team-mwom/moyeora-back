@@ -12,9 +12,12 @@ import java.util.List;
 public class MainService {
     private final MainRepository mainRepository;
 
-    public List<Moyeora> selectTodayMoyeoraList(Pageable pageable) {
-        List<Moyeora> moyeoraList = mainRepository.findTop4ByOrderByRegDtDesc(pageable);
-
+    public List<Moyeora> selectTodayMoyeoraList() {
+        List<Moyeora> moyeoraList = mainRepository.findTop4ByOrderByRegDtDesc();
         return moyeoraList;
     }
+    public void mainSearch(String word) {
+        System.out.println("word = " + word);
+    }
+
 }

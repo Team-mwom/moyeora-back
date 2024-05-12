@@ -22,5 +22,4 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
 
   MemberEntity findTopByNickName(String nickName);
 
-
 }

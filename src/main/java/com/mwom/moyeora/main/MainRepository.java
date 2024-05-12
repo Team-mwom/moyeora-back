@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface MainRepository extends JpaRepository<Moyeora, Long> {
-    List<Moyeora> findTop4ByOrderByRegDtDesc(Pageable pageable);
+    List<Moyeora> findTop4ByOrderByRegDtDesc();
 }

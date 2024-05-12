@@ -5,10 +5,7 @@ import com.mwom.moyeora.moyeora.MoyeoraVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,8 +18,8 @@ public class MainController {
     private final MainService mainService;
 
     @GetMapping()
-    public List<MoyeoraVo> selectTodayMoyeoraList(Model model, Pageable pageable) {
-        List<Moyeora> moyeoraList = mainService.selectTodayMoyeoraList(pageable);
+    public List<MoyeoraVo> selectTodayMoyeoraList(Model model) {
+        List<Moyeora> moyeoraList = mainService.selectTodayMoyeoraList();
 
         List<MoyeoraVo> moyeoraVoList = moyeoraList.stream()
                 .map(m -> new MoyeoraVo(m))
@@ -32,9 +29,13 @@ public class MainController {
         return moyeoraVoList;
     }
 
-    @GetMapping("/searchMain")
-    public void searchMain(String word){
-        System.out.println("[word] ======> " + word);
+    @GetMapping("/searchMain/{word}")
+    public void searchMain(@PathVariable String word){
+        System.out.println("word :: " + word);
+        mainService.mainSearch(word);
+
+
+        //System.out.println("[word] ======> " + word);
         //return testService.selectTestAllList(mybatis);
     }
 }
