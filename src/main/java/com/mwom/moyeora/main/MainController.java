@@ -1,9 +1,7 @@
 package com.mwom.moyeora.main;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -12,9 +10,16 @@ import java.util.List;
 @RequestMapping("/api/main")
 public class MainController {
 
-    @GetMapping("/searchMain")
-    public void searchMain(String word){
-        System.out.println("[word] ======> " + word);
+    @Autowired
+    private MainService mainService;
+
+    @GetMapping("/searchMain/{word}")
+    public void searchMain(@PathVariable String word){
+        System.out.println("word :: " + word);
+        mainService.mainSearch(word);
+
+
+        //System.out.println("[word] ======> " + word);
         //return testService.selectTestAllList(mybatis);
     }
 }
