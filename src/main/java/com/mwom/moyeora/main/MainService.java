@@ -2,6 +2,7 @@ package com.mwom.moyeora.main;
 
 import com.mwom.moyeora.domain.entity.Moyeora;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -20,4 +21,7 @@ public class MainService {
         System.out.println("word = " + word);
     }
 
+    public Page<Moyeora> selectMoyeoraList(Pageable pageable) {
+        return mainRepository.selectMoyeoraList(pageable);
+    }
 }
