@@ -1,4 +1,4 @@
-package com.mwom.moyeora.member;
+package com.mwom.moyeora.profile;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

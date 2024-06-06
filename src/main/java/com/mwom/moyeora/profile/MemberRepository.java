@@ -1,4 +1,4 @@
-package com.mwom.moyeora.member;
+package com.mwom.moyeora.profile;
 
 import com.mwom.moyeora.member.MemberEntity;
 import com.mwom.moyeora.test.entity.TestEntity;
