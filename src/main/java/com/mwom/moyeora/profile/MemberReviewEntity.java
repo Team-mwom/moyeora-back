@@ -1,5 +1,7 @@
 package com.mwom.moyeora.profile;
 
+import com.mwom.moyeora.member.MemberEntity;
+import com.mwom.moyeora.member.MemberInfoEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -42,7 +44,17 @@ public class MemberReviewEntity {
   @Column(nullable = true, length = 20)
   private String reg_dt,mod_dt;
 
+  @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+  @JoinColumn(name = "member_seq", referencedColumnName = "member_seq", insertable = false, updatable = false)
+  private MemberEntity memberOwnerEntity;//TB_MEMBER_REVIEW.member_seq -> TB_MEMBER.member_seq  //방명록 주인의 회원정보
+
+  @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+  @JoinColumn(name = "writer", referencedColumnName = "member_seq", insertable = false, updatable = false)
+  private MemberEntity memberWriterEntity;//TB_MEMBER_REVIEW.writer -> TB_MEMBER.member_seq //방명록 작성자의 회원정보
 
 
 
 }
+
+
+
