@@ -17,7 +17,7 @@ import javax.transaction.Transactional;
 
 public class MemberReviewDto {
 
-
+private String ownerNickName;
 private String writerNickName;
 private String content;
 private String date;

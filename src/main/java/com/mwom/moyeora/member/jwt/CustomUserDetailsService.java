@@ -1,7 +1,7 @@
 package com.mwom.moyeora.member.jwt;
 
 import com.mwom.moyeora.member.MemberEntity;
-import com.mwom.moyeora.profile.MemberRepository;
+import com.mwom.moyeora.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -2,7 +2,6 @@ package com.mwom.moyeora.member;
 
 import com.mwom.moyeora.member.jwt.JwtTokenProvider;
 import com.mwom.moyeora.member.jwt.TokenInfo;
-import com.mwom.moyeora.profile.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

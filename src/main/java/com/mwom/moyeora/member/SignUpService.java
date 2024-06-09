@@ -1,6 +1,5 @@
 package com.mwom.moyeora.member;
 
-import com.mwom.moyeora.profile.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -38,11 +38,15 @@ public class MemberReviewEntity {
 
 
 
-  @Column(nullable = true, length = 11)
-  private int reg_id,mod_id;
+  @Column(name = "reg_id")
+  private int regId;
+  @Column(name = "mod_id")
+  private int modId;
 
-  @Column(nullable = true, length = 20)
-  private String reg_dt,mod_dt;
+  @Column(name = "reg_dt")
+  private String regDt;
+  @Column(name = "mod_dt")
+  private String modDt;
 
   @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
   @JoinColumn(name = "member_seq", referencedColumnName = "member_seq", insertable = false, updatable = false)
