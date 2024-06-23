@@ -15,7 +15,7 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
 
   public MemberEntity save(MemberEntity entity);
 
-  @Query(value = "update TB_MEMBER set REFRESHTOKEN = :#{#entity.refreshToken} where KAKAO = :#{#entity.kakao}",nativeQuery = true)
+  @Query(value = "update TB_MEMBER set REFRESH_TOKEN = :#{#entity.refreshToken} where KAKAO = :#{#entity.kakao}",nativeQuery = true)
   public void updateMemberEntity(@Param("entity") MemberEntity memberEntity);
 
   MemberEntity findTopByRefreshToken(String refreshToken);

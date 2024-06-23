@@ -26,13 +26,14 @@ public class MemberEntity {
   @Column(name = "member_seq")
   private int memberSeq;
 
+
   @Column(nullable = true, length = 50)
   private String role,name,nickName,email;
 
   @Column(nullable = true, length = 50)
   private String kakao;
 
-  @Column(nullable = true, length = 50)
+  @Column(name = "REFRESH_TOKEN")
   private String refreshToken;
 
   @Column(nullable = true, length = 11)
