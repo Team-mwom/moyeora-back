@@ -1,7 +1,6 @@
 package com.mwom.moyeora.profile;
 
 import com.mwom.moyeora.member.MemberEntity;
-import com.mwom.moyeora.member.MemberInfoEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,14 +20,14 @@ import javax.transaction.Transactional;
 @DynamicInsert//insert시 null인값 무시 : DB에서 값이 없어도 자동 기본값 들어가는 애들한테 jpa가 null값을 넣을라하 하는거 막음
 @DynamicUpdate
 @Table(name="TB_MEMBER_REVIEW")
-public class MemberReviewEntity {
+public class ReviewEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "member_review_seq")
+  @Column(name = "MEMBER_REVIEW_SEQ")
   private int memberReviewSeq;
 
-  @Column(name = "member_seq")
+  @Column(name = "MEMBER_SEQ")
   private int memberSeq;
 
   private int writer,star;
@@ -38,14 +37,14 @@ public class MemberReviewEntity {
 
 
 
-  @Column(name = "reg_id")
+
   private int regId;
-  @Column(name = "mod_id")
+
   private int modId;
 
-  @Column(name = "reg_dt")
+
   private String regDt;
-  @Column(name = "mod_dt")
+
   private String modDt;
 
   @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)

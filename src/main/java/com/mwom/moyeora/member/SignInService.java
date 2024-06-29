@@ -63,7 +63,7 @@ public class SignInService {
   @Transactional
   public MemberEntity selectMemberInfo (String member_seq){
 
-    return memberRepository.findByMemberSeq(Integer.parseInt(member_seq));
+    return memberRepository.findTopByMemberSeq(Integer.parseInt(member_seq));
 
   }
 

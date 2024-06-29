@@ -5,12 +5,10 @@ import com.mwom.moyeora.member.MemberSeq;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -18,15 +16,15 @@ import java.util.List;
 @ResponseBody
 @RequiredArgsConstructor
 @RequestMapping("/api")
-public class MemberReviewController {
+public class ReviewController {
 
   @Autowired
-  private MemberReviewService memberReviewService;
+  private ReviewService memberReviewService;
   @Autowired
   MemberRepository memberRepository;
 
   @GetMapping("/all/memberReviewList")
-  public  List<MemberReviewDto> memberReviewList(@Param("nickName")String nickName, Pageable pageable)  {
+  public  List<ReviewDto> memberReviewList(@Param("nickName")String nickName, Pageable pageable)  {
     System.out.println("nickName = " + nickName);
 
 
@@ -34,10 +32,10 @@ public class MemberReviewController {
   }
 
   @PostMapping("/user/insertReview")
-  public String insertReview(@RequestBody MemberReviewDto memberReviewDto){
+  public String insertReview(@RequestBody ReviewDto memberReviewDto){
     int writerSeq = Integer.parseInt(MemberSeq.getCurrentMemberSeq()) ;
     int ownerSeq = memberRepository.findTopByNickName(memberReviewDto.getOwnerNickName()).getMemberSeq();
-    MemberReviewEntity memberReviewEntity = new MemberReviewEntity();
+    ReviewEntity memberReviewEntity = new ReviewEntity();
     memberReviewEntity.setMemberSeq(ownerSeq);
     memberReviewEntity.setWriter(writerSeq);
     memberReviewEntity.setContent(memberReviewDto.getContent());
