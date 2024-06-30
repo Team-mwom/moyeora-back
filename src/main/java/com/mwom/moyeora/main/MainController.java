@@ -3,6 +3,7 @@ package com.mwom.moyeora.main;
 import com.mwom.moyeora.domain.entity.Moyeora;
 import com.mwom.moyeora.moyeora.MoyeoraVo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,13 +30,16 @@ public class MainController {
         return moyeoraVoList;
     }
 
-    @GetMapping("/searchMain/{word}")
-    public void searchMain(@PathVariable String word){
-        System.out.println("word :: " + word);
-        mainService.mainSearch(word);
+    @GetMapping("/selectSearchMain")
+    public List<MoyeoraVo> selectSearchMain(@RequestParam String word,
+                                          @RequestParam int page,
+                                          @RequestParam int size){
+        Page<Moyeora> searchList = mainService.selectMainSearch(word, page, size);
 
+        List<MoyeoraVo> searchVoList = searchList.stream()
+                .map(m -> new MoyeoraVo(m))
+                .collect(Collectors.toList());
 
-        //System.out.println("[word] ======> " + word);
-        //return testService.selectTestAllList(mybatis);
+        return searchVoList;
     }
 }
