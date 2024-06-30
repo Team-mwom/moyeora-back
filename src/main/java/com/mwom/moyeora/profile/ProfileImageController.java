@@ -27,7 +27,11 @@ public class ProfileImageController {
     System.out.println("nickName = " + nickName);
     String baseImgBlobimg=ProfileBaseImage.baseImgBlob;
     String imgBlob ="";
-    MemberInfoEntity memberInfoEntity=memberRepository.findTopByNickName(nickName).getMemberInfoEntity();
+    MemberEntity memberEntity = memberRepository.findTopByNickName(nickName);
+    if(memberEntity==null){
+      return baseImgBlobimg;
+    }
+    MemberInfoEntity memberInfoEntity=memberEntity.getMemberInfoEntity();
 
     if(memberInfoEntity==null||memberInfoEntity.getProfileImg()==null||memberInfoEntity.getProfileImg().equals("")){
       return baseImgBlobimg;
