@@ -23,7 +23,7 @@ public class MemberEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "member_seq")
+  @Column(name = "MEMBER_SEQ")
   private int memberSeq;
 
 
@@ -42,8 +42,7 @@ public class MemberEntity {
   @Column(nullable = true, length = 20)
   private String reg_dt,mod_dt;
 
-  @OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-  @JoinColumn(name="member_seq")
+  @OneToOne(mappedBy="memberEntity")
   private MemberInfoEntity memberInfoEntity;
 
 

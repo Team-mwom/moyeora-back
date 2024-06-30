@@ -13,24 +13,24 @@ import java.util.List;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class MemberReviewService {
+public class ReviewService {
 
   @Autowired
-  private MemberReviewRepository memberReviewRepository;
+  private ReviewRepository memberReviewRepository;
 
-  public Page<MemberReviewEntity> findByMemberOwnerEntityNickName(Pageable pageable,String nickName){
+  public Page<ReviewEntity> findByMemberOwnerEntityNickName(Pageable pageable, String nickName){
     return memberReviewRepository.findByMemberOwnerEntityNickNameOrderByRegDtDesc(pageable,nickName);
   }
 
-  public List<MemberReviewDto> getReviewList(Pageable pageable,String nickName){
+  public List<ReviewDto> getReviewList(Pageable pageable, String nickName){
 
-    Page<MemberReviewEntity> page = findByMemberOwnerEntityNickName(pageable,nickName);//검색된 Page 타입의 데이터
+    Page<ReviewEntity> page = findByMemberOwnerEntityNickName(pageable,nickName);//검색된 Page 타입의 데이터
     int totalPages = page.getTotalPages();//총 페이지 수 (검색된이 아닌 페이지가 몇개까지 나오는가 밑에 페이지 숫자 갯수)
-    List<MemberReviewEntity> list = page.toList();//검색된 page타입을 가공하기 쉽게 List로 변환
-    List<MemberReviewDto> result =  new ArrayList();//프론트 단에 전달한 Dto가 담긴 List
+    List<ReviewEntity> list = page.toList();//검색된 page타입을 가공하기 쉽게 List로 변환
+    List<ReviewDto> result =  new ArrayList();//프론트 단에 전달한 Dto가 담긴 List
 
     for(int i = 0 ; i<list.size();i++){//필요한 데이터만 result에 넣어준다.
-      MemberReviewDto memberReviewDto =new MemberReviewDto();
+      ReviewDto memberReviewDto =new ReviewDto();
       memberReviewDto.setWriterNickName(list.get(i).getMemberWriterEntity().getNickName());
       memberReviewDto.setDate(list.get(i).getRegDt());
       memberReviewDto.setContent(list.get(i).getContent());
@@ -41,7 +41,7 @@ public class MemberReviewService {
     return result;
   }
 
-  public MemberReviewEntity save(MemberReviewEntity memberReviewEntity){
+  public ReviewEntity save(ReviewEntity memberReviewEntity){
     return memberReviewRepository.save(memberReviewEntity);
   }
 
