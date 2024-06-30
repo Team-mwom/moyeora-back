@@ -1,5 +1,6 @@
 package com.mwom.moyeora.member;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -62,6 +63,7 @@ public class MemberInfoEntity {
 
   private int age;
 
+  @JsonIgnore
   @OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
   @JoinColumn(name = "MEMBER_SEQ", referencedColumnName = "MEMBER_SEQ", insertable = false, updatable = false)
   private MemberEntity memberEntity;
