@@ -26,7 +26,7 @@ public class MoyeoraMember extends BaseEntity {
 
     private String myrHostYn; //호스트
 
-    private LocalDateTime myrAccessionDate; //가입일
+    private LocalDateTime myrAccesstionDate; //가입일
 
     private LocalDateTime myrApprovalDate; //신청일
 
