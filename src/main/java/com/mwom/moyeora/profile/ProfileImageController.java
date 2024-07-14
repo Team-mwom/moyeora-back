@@ -1,11 +1,9 @@
 package com.mwom.moyeora.profile;
 
-import com.mwom.moyeora.member.MemberEntity;
-import com.mwom.moyeora.member.MemberInfoEntity;
-import com.mwom.moyeora.member.MemberRepository;
-import com.mwom.moyeora.member.MemberSeq;
+import com.mwom.moyeora.member.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
@@ -21,6 +19,8 @@ import java.util.List;
 public class ProfileImageController {
   @Autowired
   MemberRepository memberRepository;
+  @Autowired
+  MemberInfoRepository memberInfoRepository;
 
   @GetMapping("/all/profileImg")
   public  String memberReviewList(@Param("nickName")String nickName)  {
@@ -41,7 +41,19 @@ public class ProfileImageController {
     return imgBlob;
   }
 
+@PostMapping("/user/changeProfileImg")
+  public String changeProfileImg(@RequestBody MemberInfoEntity memberInfoEntity ){
 
+  int memberSeq = Integer.parseInt(MemberSeq.getCurrentMemberSeq());
+  memberInfoEntity.setMemberSeq(memberSeq);
+  MemberInfoEntity entity = memberInfoRepository.findTopByMemberSeq(memberSeq).getMemberInfoEntity();
+  entity.setProfileImg(memberInfoEntity.getProfileImg());
+  memberInfoRepository.save(entity);
+
+
+
+    return "success";
+}
 
 }
 
