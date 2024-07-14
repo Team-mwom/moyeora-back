@@ -5,10 +5,13 @@ import com.mwom.moyeora.moyeora.MoyeoraVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -31,15 +34,22 @@ public class MainController {
     }
 
     @GetMapping("/selectSearchMain")
-    public List<MoyeoraVo> selectSearchMain(@RequestParam String word,
-                                          @RequestParam int page,
-                                          @RequestParam int size){
+    public ResponseEntity<Map<String, Object>> selectSearchMain(@RequestParam String word,
+                                                                @RequestParam int page,
+                                                                @RequestParam int size){
         Page<Moyeora> searchList = mainService.selectMainSearch(word, page, size);
 
         List<MoyeoraVo> searchVoList = searchList.stream()
                 .map(m -> new MoyeoraVo(m))
                 .collect(Collectors.toList());
 
-        return searchVoList;
+        Map<String, Object> response = new HashMap<>();
+        response.put("content", searchVoList);
+        response.put("currentPage", searchList.getNumber());
+        response.put("totalPages", searchList.getTotalPages());
+        response.put("totalElements", searchList.getTotalElements());
+        response.put("size", searchList.getSize());
+
+        return ResponseEntity.ok(response);
     }
 }

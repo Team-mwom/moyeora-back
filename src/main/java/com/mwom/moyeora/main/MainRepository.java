@@ -11,6 +11,5 @@ import java.util.List;
 public interface MainRepository extends JpaRepository<Moyeora, Long> {
     List<Moyeora> findTop4ByOrderByRegDtDesc();
 
-    //@Query("SELECT m FROM Moyeora m JOIN FETCH m.moyeoraMembers")
     Page<Moyeora> findByMyrTitleContaining(String searchKeyword, Pageable pageable);
 }
