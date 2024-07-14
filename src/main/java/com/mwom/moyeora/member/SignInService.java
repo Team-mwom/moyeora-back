@@ -41,7 +41,7 @@ public class SignInService {
 
   @Transactional
   public void updateRefreshToken(MemberEntity memberEntity){
-    memberRepository.updateMemberEntity(memberEntity);
+    memberRepository.updateMemberEntityToken(memberEntity);
   }
 
   @Transactional
