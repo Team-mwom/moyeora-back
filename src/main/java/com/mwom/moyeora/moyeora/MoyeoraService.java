@@ -15,9 +15,10 @@ public class MoyeoraService {
     @Autowired
     private MoyeoraRepository moyeoraRepository;
 
-    public int insertMoyeoraInfo (MoyeoraMainDto moyeoraMainDto) {
-        int result = -1;
+    @Autowired
+    private MoyeoraInfoRepository moyeoraInfoRepository;
 
+    public MoyeoraMainDto insertMoyeoraInfo (MoyeoraMainDto moyeoraMainDto) {
         Moyeora moyeora = new Moyeora();
         MoyeoraInfo moyeoraInfo = new MoyeoraInfo();
 
@@ -28,13 +29,13 @@ public class MoyeoraService {
         log.debug("moyeora Value= {}", moyeora);
         log.debug("moyeoraInfo Value= {}", moyeoraInfo);
 
-        moyeora = moyeoraRepository.insertMoyeora(moyeora);
+        moyeora = moyeoraRepository.save(moyeora);
 
         moyeoraInfo.setMyrSeq(moyeoraInfo.getMyrSeq());
 
-        moyeoraInfo = moyeoraRepository.insertMoyeoraInfo(moyeoraInfo);
+        moyeoraInfo = moyeoraInfoRepository.save(moyeoraInfo);
 
-        return result;
+        return moyeoraMainDto;
     }
 
 //    private final MoyeoraMapper moyeoraMapper;

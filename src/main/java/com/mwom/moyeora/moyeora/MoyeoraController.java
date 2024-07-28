@@ -16,11 +16,9 @@ public class MoyeoraController {
     private MoyeoraService moyeoraService;
 
     @PostMapping("/create-moyeora")
-    public int insertMoyeoraInfo(@RequestBody MoyeoraMainDto moyeoraMainDto) {
-        int result = -1;
+    public MoyeoraMainDto insertMoyeoraInfo(@RequestBody MoyeoraMainDto moyeoraMainDto) {
+        moyeoraService.insertMoyeoraInfo(moyeoraMainDto);
 
-        result += moyeoraService.insertMoyeoraInfo(moyeoraMainDto);
-
-        return result;
+        return moyeoraMainDto;
     }
 }
