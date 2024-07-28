@@ -2,6 +2,7 @@ package com.mwom.moyeora.member;
 
 import com.mwom.moyeora.member.jwt.TokenInfo;
 import com.mwom.moyeora.member.sms.SMSService;
+import com.mwom.moyeora.profile.ProfileBaseImage;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -57,17 +58,13 @@ public class SignController {
     return tokenInfo;
   }
   @PostMapping("/user/getMyInfo")
-  public MemberEntity getMyInfo (){//로그인시 회원의 기본 정보를 프론트 단에 저장하기 위함
-    System.out.println("MemberSeq.getCurrentMemberSeq() = " + MemberSeq.getCurrentMemberSeq());
-//    MemberEntity entity = signInService.selectMemberInfo(MemberSeq.getCurrentMemberSeq());
-//    //포함 되지 말아야 할 정보
-//    System.out.println(entity);
-//    System.out.println("entity = " + entity);
-//    entity.setMemberSeq(0);
-//    entity.setKakao(null);
-//    entity.setRefreshToken(null);
+  public SignMemberDto getMyInfo (){//로그인시 회원의 기본 정보를 프론트 단에 저장하기 위함
+    MemberEntity entity = signInService.selectMemberInfo(MemberSeq.getCurrentMemberSeq());
+    SignMemberDto dto = new SignMemberDto();
+    dto.setNickName(entity.getNickName());
+    dto.setProfileImg(entity.getMemberInfoEntity().getProfileImg()==null? ProfileBaseImage.baseImgBlob:entity.getMemberInfoEntity().getProfileImg());
 
-    return signInService.selectMemberInfo(MemberSeq.getCurrentMemberSeq());
+    return dto;
 
   }
 
