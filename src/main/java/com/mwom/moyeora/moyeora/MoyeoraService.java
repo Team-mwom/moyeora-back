@@ -1,21 +1,47 @@
 package com.mwom.moyeora.moyeora;
 
+import com.mwom.moyeora.domain.entity.Moyeora;
+import com.mwom.moyeora.domain.entity.MoyeoraInfo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MoyeoraService {
-    private final MoyeoraMapper moyeoraMapper;
-    private final MoyeoraRepository moyeoraRepository;
 
-    public Map<String, Object> selectMoyeoraList(Pageable pageable) {
+    @Autowired
+    private MoyeoraRepository moyeoraRepository;
+
+    @Autowired
+    private MoyeoraInfoRepository moyeoraInfoRepository;
+
+    public MoyeoraMainDto insertMoyeoraInfo (MoyeoraMainDto moyeoraMainDto) {
+        Moyeora moyeora = new Moyeora();
+        MoyeoraInfo moyeoraInfo = new MoyeoraInfo();
+
+        moyeora = moyeoraMainDto.getMoyeoraEntity();
+        moyeoraInfo = moyeoraMainDto.getMoyeoraInfoEntity();
+
+        log.debug("MoyeoraMainDto Value= {}", moyeoraMainDto);
+        log.debug("moyeora Value= {}", moyeora);
+        log.debug("moyeoraInfo Value= {}", moyeoraInfo);
+
+        moyeora = moyeoraRepository.save(moyeora);
+
+        moyeoraInfo.setMyrSeq(moyeoraInfo.getMyrSeq());
+
+        moyeoraInfo = moyeoraInfoRepository.save(moyeoraInfo);
+
+        return moyeoraMainDto;
+    }
+
+//    private final MoyeoraMapper moyeoraMapper;
+//    private final MoyeoraRepository moyeoraRepository;
+
+//    public Map<String, Object> selectMoyeoraList(Pageable pageable) {
 //        Page<MoyeoraVo> moyeoraVoPage = moyeoraRepository.selectMoyeoraList(searchVo, pageable);
 //
 //        Map<String, Object> map = new HashMap<>();
@@ -31,6 +57,6 @@ public class MoyeoraService {
 //        map.put("searchVo", searchVo);
 //
 //        return map;
-        return null;
-    }
+//        return null;
+//    }
 }
