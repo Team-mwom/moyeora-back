@@ -36,6 +36,8 @@ public class ReviewService {
       memberReviewDto.setContent(list.get(i).getContent());
       memberReviewDto.setStar(list.get(i).getStar());
       memberReviewDto.setTotalPage(totalPages);
+      String profileImg = list.get(i).getMemberWriterEntity().getMemberInfoEntity().getProfileImg();
+      memberReviewDto.setProfileImg(profileImg==null||profileImg==""?ProfileBaseImage.baseImgBlob:profileImg);
       result.add(memberReviewDto);
     }
     return result;
