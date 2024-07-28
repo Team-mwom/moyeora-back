@@ -23,8 +23,9 @@ public class MemberEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "member_seq")
+  @Column(name = "MEMBER_SEQ")
   private int memberSeq;
+
 
   @Column(nullable = true, length = 50)
   private String role,name,nickName,email;
@@ -32,7 +33,7 @@ public class MemberEntity {
   @Column(nullable = true, length = 50)
   private String kakao;
 
-  @Column(nullable = true, length = 50)
+  @Column(name = "REFRESH_TOKEN")
   private String refreshToken;
 
   @Column(nullable = true, length = 11)
@@ -41,8 +42,7 @@ public class MemberEntity {
   @Column(nullable = true, length = 20)
   private String reg_dt,mod_dt;
 
-  @OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-  @JoinColumn(name="member_seq")
+  @OneToOne(mappedBy="memberEntity")
   private MemberInfoEntity memberInfoEntity;
 
 

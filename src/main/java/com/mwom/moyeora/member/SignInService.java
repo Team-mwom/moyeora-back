@@ -10,8 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class SignInService {
@@ -43,7 +41,7 @@ public class SignInService {
 
   @Transactional
   public void updateRefreshToken(MemberEntity memberEntity){
-    memberRepository.updateMemberEntity(memberEntity);
+    memberRepository.updateMemberEntityToken(memberEntity);
   }
 
   @Transactional
@@ -65,7 +63,7 @@ public class SignInService {
   @Transactional
   public MemberEntity selectMemberInfo (String member_seq){
 
-    return memberRepository.findByMemberSeq(Integer.parseInt(member_seq));
+    return memberRepository.findTopByMemberSeq(Integer.parseInt(member_seq));
 
   }
 

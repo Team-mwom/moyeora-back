@@ -58,15 +58,16 @@ public class SignController {
   }
   @PostMapping("/user/getMyInfo")
   public MemberEntity getMyInfo (){//로그인시 회원의 기본 정보를 프론트 단에 저장하기 위함
-    MemberEntity entity = signInService.selectMemberInfo(MemberSeq.getCurrentMemberSeq());
-    //포함 되지 말아야 할 정보
-    System.out.println(entity);
-    System.out.println("entity = " + entity);
-    entity.setMemberSeq(0);
-    entity.setKakao(null);
-    entity.setRefreshToken(null);
+    System.out.println("MemberSeq.getCurrentMemberSeq() = " + MemberSeq.getCurrentMemberSeq());
+//    MemberEntity entity = signInService.selectMemberInfo(MemberSeq.getCurrentMemberSeq());
+//    //포함 되지 말아야 할 정보
+//    System.out.println(entity);
+//    System.out.println("entity = " + entity);
+//    entity.setMemberSeq(0);
+//    entity.setKakao(null);
+//    entity.setRefreshToken(null);
 
-    return entity;
+    return signInService.selectMemberInfo(MemberSeq.getCurrentMemberSeq());
 
   }
 
@@ -91,7 +92,8 @@ public class SignController {
   }
 
   @GetMapping("all/signOut")
-  public  String signOut (HttpServletRequest request, HttpServletResponse response){
+  public  String signOut (HttpServletRequest request, HttpServletResponse response) {
+
     new SecurityContextLogoutHandler().logout(request,response,SecurityContextHolder.getContext().getAuthentication());
     return "success";
   }

@@ -3,6 +3,7 @@ package com.mwom.moyeora.main;
 import com.mwom.moyeora.domain.entity.Moyeora;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,9 @@ public class MainService {
         List<Moyeora> moyeoraList = mainRepository.findTop4ByOrderByRegDtDesc();
         return moyeoraList;
     }
-    public void mainSearch(String word) {
-        System.out.println("word = " + word);
+
+    public Page<Moyeora> selectMainSearch(String word, int page, int size) {
+        return mainRepository.findByMyrTitleContaining(word, PageRequest.of(page, size));
     }
 
     public Page<Moyeora> selectMoyeoraList(Pageable pageable) {

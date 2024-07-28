@@ -33,26 +33,23 @@ public class MainController {
         return moyeoraVoList;
     }
 
-    @GetMapping("/list")
-    public ResponseEntity<Map<String, Object>> selectMoyeoraList(Model model, Pageable pageable) {
-        Page<Moyeora> moyeoraList = mainService.selectMoyeoraList(pageable);
+    @GetMapping("/selectSearchMain")
+    public ResponseEntity<Map<String, Object>> selectSearchMain(@RequestParam String word,
+                                                                @RequestParam int page,
+                                                                @RequestParam int size){
+        Page<Moyeora> searchList = mainService.selectMainSearch(word, page, size);
 
-        List<MoyeoraVo> moyeoraVoList = moyeoraList.stream()
+        List<MoyeoraVo> searchVoList = searchList.stream()
                 .map(m -> new MoyeoraVo(m))
                 .collect(Collectors.toList());
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("moyeoraVoList", moyeoraVoList);
-        return ResponseEntity.ok().body(map);
-    }
+        Map<String, Object> response = new HashMap<>();
+        response.put("content", searchVoList);
+        response.put("currentPage", searchList.getNumber());
+        response.put("totalPages", searchList.getTotalPages());
+        response.put("totalElements", searchList.getTotalElements());
+        response.put("size", searchList.getSize());
 
-    @GetMapping("/searchMain/{word}")
-    public void searchMain(@PathVariable String word){
-        System.out.println("word :: " + word);
-        mainService.mainSearch(word);
-
-
-        //System.out.println("[word] ======> " + word);
-        //return testService.selectTestAllList(mybatis);
+        return ResponseEntity.ok(response);
     }
 }
