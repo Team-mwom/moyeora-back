@@ -7,7 +7,7 @@ import com.mwom.moyeora.common.MemberSeq;
 import com.mwom.moyeora.member.service.SignInService;
 import com.mwom.moyeora.member.service.SignUpService;
 import com.mwom.moyeora.member.jwt.TokenInfo;
-import com.mwom.moyeora.member.sms.SMSService;
+import com.mwom.moyeora.member.service.SMSService;
 import com.mwom.moyeora.profile.ProfileBaseImage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
