@@ -1,5 +1,6 @@
 package com.mwom.moyeora.database.entity;
 
+import com.mwom.moyeora.database.entity.common.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
