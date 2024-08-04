@@ -5,6 +5,7 @@ import com.mwom.moyeora.main.service.MainService;
 import com.mwom.moyeora.database.vo.MoyeoraVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,18 @@ public class MainController {
     @GetMapping("/test")
     public List<MoyeoraVo> selectTodayMoyeoraList(Model model) {
         List<Moyeora> moyeoraList = mainService.selectTodayMoyeoraList();
+
+        List<MoyeoraVo> moyeoraVoList = moyeoraList.stream()
+                .map(m -> new MoyeoraVo(m))
+                .collect(Collectors.toList());
+
+        model.addAttribute("moyeoraVoList", moyeoraVoList);
+        return moyeoraVoList;
+    }
+
+    @GetMapping("/list")
+    public List<MoyeoraVo> selectMoyeoraList(Model model, Pageable pageable) {
+        List<Moyeora> moyeoraList = (List<Moyeora>) mainService.selectMoyeoraList(pageable);
 
         List<MoyeoraVo> moyeoraVoList = moyeoraList.stream()
                 .map(m -> new MoyeoraVo(m))

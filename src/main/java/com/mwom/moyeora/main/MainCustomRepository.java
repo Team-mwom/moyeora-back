@@ -1,6 +1,6 @@
 package com.mwom.moyeora.main;
 
-import com.mwom.moyeora.domain.entity.Moyeora;
+import com.mwom.moyeora.database.entity.Moyeora;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
