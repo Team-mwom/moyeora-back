@@ -18,14 +18,17 @@ public class MoyeoraController {
     @Autowired
     private MoyeoraService moyeoraService;
 
+    /**
+     * 모여라 생성
+     * @param moyeoraMainDto
+     * @return int
+     */
     @PostMapping("/user/moyeora/create-moyeora")
-    public MoyeoraMainDto insertMoyeoraInfo(@RequestBody MoyeoraMainDto moyeoraMainDto) {
-//        int writerSeq = Integer.parseInt(MyrSeq.getCurrentMemberSeq());
-        System.out.println("moyeoraMainDto Controller = " + moyeoraMainDto);
-        System.out.println("moyeoraMainDto.getMoyeora().getMyrTitle() = " + moyeoraMainDto.getMoyeora().getMyrTitle());
-        System.out.println("moyeoraMainDto.getMoyeora().getMyrTags() = " + moyeoraMainDto.getMoyeora().getMyrTags());
-        //moyeoraService.insertMoyeoraInfo(moyeoraMainDto);
+    public int insertMoyeoraInfo(@RequestBody MoyeoraMainDto moyeoraMainDto) {
+        int result = -1;
 
-        return moyeoraMainDto;
+        result += moyeoraService.insertMoyeoraInfo(moyeoraMainDto);
+
+        return result;
     }
 }
