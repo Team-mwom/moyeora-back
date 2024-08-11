@@ -1,5 +1,6 @@
 package com.mwom.moyeora.moyeora.service;
 
+import com.mwom.moyeora.common.MemberSeq;
 import com.mwom.moyeora.database.dto.MoyeoraMainDto;
 import com.mwom.moyeora.database.entity.Moyeora;
 import com.mwom.moyeora.database.entity.MoyeoraInfo;
@@ -26,11 +27,8 @@ public class MoyeoraService {
 
         MoyeoraInfo moyeoraInfo = new MoyeoraInfo();
 
-        moyeora = moyeoraMainDto.getMoyeoraEntity();
-        moyeoraInfo = moyeoraMainDto.getMoyeoraInfoEntity();
-
-        moyeora.setMyrTitle("123");
-
+        moyeora = moyeoraMainDto.getMoyeora();
+        moyeoraInfo = moyeoraMainDto.getMoyeoraInfo();
 
 
         return moyeoraMainDto;

@@ -10,14 +10,10 @@ import lombok.Setter;
 import javax.persistence.OneToOne;
 
 @Data
-@Getter
-@Setter
 @Builder
 public class MoyeoraMainDto {
 
-    @OneToOne(mappedBy="moyeora")
-    private Moyeora moyeoraEntity;
+    private Moyeora moyeora;
 
-    @OneToOne(mappedBy="moyeoraInfo")
-    private MoyeoraInfo moyeoraInfoEntity;
+    private MoyeoraInfo moyeoraInfo;
 }
