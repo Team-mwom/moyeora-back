@@ -1,5 +1,6 @@
 package com.mwom.moyeora.moyeora.service;
 
+import com.mwom.moyeora.common.MemberSeq;
 import com.mwom.moyeora.database.dto.MoyeoraMainDto;
 import com.mwom.moyeora.database.entity.Moyeora;
 import com.mwom.moyeora.database.entity.MoyeoraInfo;
@@ -25,18 +26,23 @@ public class MoyeoraService {
         Moyeora moyeora = new Moyeora();
         MoyeoraInfo moyeoraInfo = new MoyeoraInfo();
 
-        moyeora = moyeoraMainDto.getMoyeoraEntity();
-        moyeoraInfo = moyeoraMainDto.getMoyeoraInfoEntity();
+        moyeora = moyeoraMainDto.getMoyeora();
+        moyeoraInfo = moyeoraMainDto.getMoyeoraInfo();
 
-        log.debug("MoyeoraMainDto Value= {}", moyeoraMainDto);
-        log.debug("moyeora Value= {}", moyeora);
-        log.debug("moyeoraInfo Value= {}", moyeoraInfo);
-
-        moyeora = moyeoraRepository.save(moyeora);
-
-        moyeoraInfo.setMyrSeq(moyeoraInfo.getMyrSeq());
-
-        moyeoraInfo = moyeoraInfoRepository.save(moyeoraInfo);
+//        int writerSeq =  Integer.parseInt(MyrSeq.getCurrentMemberSeq()) ;
+//
+//        log.debug("MoyeoraMainDto Value= {}", moyeoraMainDto);
+//        log.debug("moyeora Value= {}", moyeora);
+//        log.debug("moyeoraInfo Value= {}", moyeoraInfo);
+        System.out.println("MoyeoraMainDto Value = " + moyeoraMainDto);
+        System.out.println("moyeora Value = " + moyeora);
+        System.out.println("moyeoraInfo Value = " + moyeoraInfo);
+//
+//        moyeora = moyeoraRepository.save(moyeora);
+//
+//        moyeoraInfo.setMyrSeq(moyeoraInfo.getMyrSeq());
+//
+//        moyeoraInfo = moyeoraInfoRepository.save(moyeoraInfo);
 
         return moyeoraMainDto;
     }
