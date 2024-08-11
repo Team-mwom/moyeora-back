@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @ResponseBody
 @RequiredArgsConstructor
-@RequestMapping("/api/moyeora")
+@RequestMapping("/api")
 public class MoyeoraController {
 
     @Autowired
     private MoyeoraService moyeoraService;
 
-    @PostMapping("/create-moyeora")
+    @PostMapping("/user/moyeora/create-moyeora")
     public MoyeoraMainDto insertMoyeoraInfo(@RequestBody MoyeoraMainDto moyeoraMainDto) {
-        moyeoraService.insertMoyeoraInfo(moyeoraMainDto);
+        //moyeoraService.insertMoyeoraInfo(moyeoraMainDto);
 
         return moyeoraMainDto;
     }
