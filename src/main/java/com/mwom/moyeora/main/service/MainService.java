@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,8 +23,11 @@ public class MainService {
         return moyeoraList;
     }
 
+    public Page<Moyeora> selectMoyeoraList(Pageable pageable) {
+        return mainRepository.selectMoyeoraList(pageable);
+    }
+
     public Page<Moyeora> selectMainSearch(String word, int page, int size) {
         return mainRepository.findByMyrTitleContaining(word, PageRequest.of(page, size));
     }
-
 }
