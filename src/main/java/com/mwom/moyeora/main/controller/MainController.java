@@ -36,7 +36,7 @@ public class MainController {
 
     @GetMapping("/list")
     public List<MoyeoraVo> selectMoyeoraList(Model model, Pageable pageable) {
-        List<Moyeora> moyeoraList = (List<Moyeora>) mainService.selectMoyeoraList(pageable);
+        Page<Moyeora> moyeoraList = mainService.selectMoyeoraList(pageable);
 
         List<MoyeoraVo> moyeoraVoList = moyeoraList.stream()
                 .map(m -> new MoyeoraVo(m))
