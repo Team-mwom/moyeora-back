@@ -22,7 +22,9 @@ public class MoyeoraController {
     public MoyeoraMainDto insertMoyeoraInfo(@RequestBody MoyeoraMainDto moyeoraMainDto) {
 //        int writerSeq = Integer.parseInt(MyrSeq.getCurrentMemberSeq());
         System.out.println("moyeoraMainDto Controller = " + moyeoraMainDto);
-        moyeoraService.insertMoyeoraInfo(moyeoraMainDto);
+        System.out.println("moyeoraMainDto.getMoyeora().getMyrTitle() = " + moyeoraMainDto.getMoyeora().getMyrTitle());
+        System.out.println("moyeoraMainDto.getMoyeora().getMyrTags() = " + moyeoraMainDto.getMoyeora().getMyrTags());
+        //moyeoraService.insertMoyeoraInfo(moyeoraMainDto);
 
         return moyeoraMainDto;
     }
