@@ -1,8 +1,11 @@
 package com.mwom.moyeora.database.entity;
 
 import com.mwom.moyeora.database.entity.common.BaseEntity;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,8 +14,10 @@ import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
 
-@Getter
+@Data
 @NoArgsConstructor
+@DynamicInsert//insert시 null인값 무시 : DB에서 값이 없어도 자동 기본값 들어가는 애들한테 jpa가 null값을 넣을라하는거 막음
+@DynamicUpdate
 @Entity
 @Table(name = "TB_MOYEORA")
 public class Moyeora extends BaseEntity {
