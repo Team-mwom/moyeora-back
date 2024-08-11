@@ -24,25 +24,12 @@ public class MoyeoraService {
 
     public MoyeoraMainDto insertMoyeoraInfo (MoyeoraMainDto moyeoraMainDto) {
         Moyeora moyeora = new Moyeora();
+
         MoyeoraInfo moyeoraInfo = new MoyeoraInfo();
 
         moyeora = moyeoraMainDto.getMoyeora();
         moyeoraInfo = moyeoraMainDto.getMoyeoraInfo();
 
-//        int writerSeq =  Integer.parseInt(MyrSeq.getCurrentMemberSeq()) ;
-//
-//        log.debug("MoyeoraMainDto Value= {}", moyeoraMainDto);
-//        log.debug("moyeora Value= {}", moyeora);
-//        log.debug("moyeoraInfo Value= {}", moyeoraInfo);
-        System.out.println("MoyeoraMainDto Value = " + moyeoraMainDto);
-        System.out.println("moyeora Value = " + moyeora);
-        System.out.println("moyeoraInfo Value = " + moyeoraInfo);
-//
-//        moyeora = moyeoraRepository.save(moyeora);
-//
-//        moyeoraInfo.setMyrSeq(moyeoraInfo.getMyrSeq());
-//
-//        moyeoraInfo = moyeoraInfoRepository.save(moyeoraInfo);
 
         return moyeoraMainDto;
     }
