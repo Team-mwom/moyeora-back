@@ -16,8 +16,8 @@ import javax.persistence.OneToOne;
 public class MoyeoraMainDto {
 
     @OneToOne(mappedBy="moyeora")
-    private Moyeora moyeoraEntity;
+    private Moyeora moyeora;
 
     @OneToOne(mappedBy="moyeoraInfo")
-    private MoyeoraInfo moyeoraInfoEntity;
+    private MoyeoraInfo moyeoraInfo;
 }
