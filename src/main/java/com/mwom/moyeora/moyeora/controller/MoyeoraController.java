@@ -1,5 +1,6 @@
 package com.mwom.moyeora.moyeora.controller;
 
+import com.mwom.moyeora.common.MemberSeq;
 import com.mwom.moyeora.database.dto.MoyeoraMainDto;
 import com.mwom.moyeora.moyeora.service.MoyeoraService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class MoyeoraController {
 
     @PostMapping("/user/moyeora/create-moyeora")
     public MoyeoraMainDto insertMoyeoraInfo(@RequestBody MoyeoraMainDto moyeoraMainDto) {
-        //moyeoraService.insertMoyeoraInfo(moyeoraMainDto);
+
 
         return moyeoraMainDto;
     }
