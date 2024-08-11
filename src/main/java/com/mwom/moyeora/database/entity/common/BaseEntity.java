@@ -1,6 +1,10 @@
 package com.mwom.moyeora.database.entity.common;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -12,16 +16,17 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
-@Getter
+@Data
+@DynamicInsert//insert시 null인값 무시 : DB에서 값이 없어도 자동 기본값 들어가는 애들한테 jpa가 null값을 넣을라하는거 막음
+@DynamicUpdate
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 public abstract class BaseEntity {
 //    @CreatedBy
-    @Column(nullable = false, updatable = false)
+
     private String regId;
 
     @CreatedDate
-    @Column(nullable = false, updatable = false)
     private LocalDateTime regDt;
 
 //    @LastModifiedBy
