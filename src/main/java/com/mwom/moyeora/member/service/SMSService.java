@@ -1,4 +1,4 @@
-package com.mwom.moyeora.member.sms;
+package com.mwom.moyeora.member.service;
 
 
 import net.nurigo.java_sdk.api.Message;
