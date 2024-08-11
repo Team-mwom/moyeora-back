@@ -18,10 +18,17 @@ public class MoyeoraController {
     @Autowired
     private MoyeoraService moyeoraService;
 
+    /**
+     * 모여라 생성
+     * @param moyeoraMainDto
+     * @return int
+     */
     @PostMapping("/user/moyeora/create-moyeora")
-    public MoyeoraMainDto insertMoyeoraInfo(@RequestBody MoyeoraMainDto moyeoraMainDto) {
+    public int insertMoyeoraInfo(@RequestBody MoyeoraMainDto moyeoraMainDto) {
+        int result = -1;
 
+        result += moyeoraService.insertMoyeoraInfo(moyeoraMainDto);
 
-        return moyeoraMainDto;
+        return result;
     }
 }
