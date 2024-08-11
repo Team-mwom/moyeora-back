@@ -36,7 +36,7 @@ public class ReviewService {
     for(int i = 0 ; i<list.size();i++){//필요한 데이터만 result에 넣어준다.
       ReviewDto memberReviewDto =new ReviewDto();
       memberReviewDto.setWriterNickName(list.get(i).getMemberWriterEntity().getNickName());
-      memberReviewDto.setDate(list.get(i).getRegDt());
+      memberReviewDto.setDate(list.get(i).getRegDt().toString());
       memberReviewDto.setContent(list.get(i).getContent());
       memberReviewDto.setStar(list.get(i).getStar());
       memberReviewDto.setTotalPage(totalPages);
