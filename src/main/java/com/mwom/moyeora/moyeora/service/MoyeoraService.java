@@ -4,9 +4,9 @@ import com.mwom.moyeora.database.dto.MoyeoraDto;
 import com.mwom.moyeora.database.dto.MoyeoraInfoDto;
 import com.mwom.moyeora.database.dto.MoyeoraMainDto;
 import com.mwom.moyeora.database.dto.MoyeoraPlaceDto;
-import com.mwom.moyeora.database.entity.Moyeora;
-import com.mwom.moyeora.database.entity.MoyeoraInfo;
-import com.mwom.moyeora.database.entity.MoyeoraPlace;
+import com.mwom.moyeora.database.entity.MoyeoraEntity;
+import com.mwom.moyeora.database.entity.MoyeoraInfoEntity;
+import com.mwom.moyeora.database.entity.MoyeoraPlaceEntity;
 import com.mwom.moyeora.database.repository.MoyeoraInfoRepository;
 import com.mwom.moyeora.database.repository.MoyeoraPlaceRepository;
 import com.mwom.moyeora.database.repository.MoyeoraRepository;
@@ -55,16 +55,16 @@ public class MoyeoraService {
         System.out.println("moyeoraPlaceDto Value = " + moyeoraPlaceDto);
 
         // Entity에 Insert
-        Moyeora moyeora = new Moyeora();
+        MoyeoraEntity moyeora = new MoyeoraEntity();
         // 1. 모여라 Insert
 //        moyeora = moyeoraRepository.save(moyeora);
 
-        MoyeoraInfo moyeoraInfo = new MoyeoraInfo();
+        MoyeoraInfoEntity moyeoraInfo = new MoyeoraInfoEntity();
         moyeoraInfo.setMyrSeq(moyeoraInfo.getMyrSeq());
         // 2. 모여라 상세 Insert
 //        moyeoraInfo = moyeoraInfoRepository.save(moyeoraInfo);
 
-        MoyeoraPlace moyeoraPlace = new MoyeoraPlace();
+        MoyeoraPlaceEntity moyeoraPlace = new MoyeoraPlaceEntity();
         // 3. 모여라 장소 Insert
 //        moyeoraPlace = moyeoraPlaceRepository.save(moyeoraPlace);
 

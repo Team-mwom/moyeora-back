@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "TB_MOYEORA_MEMBER")
-public class MoyeoraMember extends BaseEntity {
+public class MoyeoraMemberEntity extends BaseEntity {
 
     @Id @GeneratedValue
     private Long myrMemberSeq; // 모여라 멤버 일련번호
@@ -19,7 +19,7 @@ public class MoyeoraMember extends BaseEntity {
     // 모여라(TB_MOYEORA)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MYR_SEQ")
-    private Moyeora moyeora;
+    private MoyeoraEntity moyeora;
 
     private String myrApprovalCompleteYn; //가입승인여부
 

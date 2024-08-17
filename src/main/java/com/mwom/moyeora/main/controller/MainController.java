@@ -1,6 +1,6 @@
 package com.mwom.moyeora.main.controller;
 
-import com.mwom.moyeora.database.entity.Moyeora;
+import com.mwom.moyeora.database.entity.MoyeoraEntity;
 import com.mwom.moyeora.main.service.MainService;
 import com.mwom.moyeora.database.vo.MoyeoraVo;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ public class MainController {
 
     @GetMapping("/test")
     public List<MoyeoraVo> selectTodayMoyeoraList(Model model) {
-        List<Moyeora> moyeoraList = mainService.selectTodayMoyeoraList();
+        List<MoyeoraEntity> moyeoraList = mainService.selectTodayMoyeoraList();
 
         List<MoyeoraVo> moyeoraVoList = moyeoraList.stream()
                 .map(m -> new MoyeoraVo(m))
@@ -36,7 +36,7 @@ public class MainController {
 
     @GetMapping("/list")
     public List<MoyeoraVo> selectMoyeoraList(Model model, Pageable pageable) {
-        Page<Moyeora> moyeoraList = mainService.selectMoyeoraList(pageable);
+        Page<MoyeoraEntity> moyeoraList = mainService.selectMoyeoraList(pageable);
 
         List<MoyeoraVo> moyeoraVoList = moyeoraList.stream()
                 .map(m -> new MoyeoraVo(m))
@@ -50,7 +50,7 @@ public class MainController {
     public ResponseEntity<Map<String, Object>> selectSearchMain(@RequestParam String word,
                                                                 @RequestParam int page,
                                                                 @RequestParam int size){
-        Page<Moyeora> searchList = mainService.selectMainSearch(word, page, size);
+        Page<MoyeoraEntity> searchList = mainService.selectMainSearch(word, page, size);
 
         List<MoyeoraVo> searchVoList = searchList.stream()
                 .map(m -> new MoyeoraVo(m))

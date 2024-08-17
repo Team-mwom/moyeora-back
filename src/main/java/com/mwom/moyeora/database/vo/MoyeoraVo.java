@@ -1,6 +1,6 @@
 package com.mwom.moyeora.database.vo;
 
-import com.mwom.moyeora.database.entity.Moyeora;
+import com.mwom.moyeora.database.entity.MoyeoraEntity;
 import lombok.Data;
 import lombok.Getter;
 
@@ -26,10 +26,10 @@ public class MoyeoraVo {
     private String modId;
     private LocalDateTime modDt;
 
-    public MoyeoraVo(Moyeora moyeora) {
+    public MoyeoraVo(MoyeoraEntity moyeora) {
         myrSeq = moyeora.getMyrSeq();
-        categorySeq = moyeora.getSubCategory().getCategory().getCategorySeq();
-        categoryName = moyeora.getSubCategory().getCategory().getCategoryName();
+        categorySeq = moyeora.getSubCategory().getCategoryEntity().getCategorySeq();
+        categoryName = moyeora.getSubCategory().getCategoryEntity().getCategoryName();
         subCategorySeq = moyeora.getSubCategory().getSubCategorySeq();
         subCategoryName = moyeora.getSubCategory().getSubCategoryName();
         myrTitle = moyeora.getMyrTitle();

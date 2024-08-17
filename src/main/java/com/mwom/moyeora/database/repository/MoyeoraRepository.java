@@ -1,13 +1,13 @@
 package com.mwom.moyeora.database.repository;
 
-import com.mwom.moyeora.database.entity.Moyeora;
+import com.mwom.moyeora.database.entity.MoyeoraEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MoyeoraRepository extends JpaRepository<Moyeora, Long> {
+public interface MoyeoraRepository extends JpaRepository<MoyeoraEntity, Long> {
 
-    Moyeora save(Moyeora moyeora);
+    MoyeoraEntity save(MoyeoraEntity moyeora);
 
 //    List<Moyeora> findTop4ByOrderByRegDtDesc();
 //
