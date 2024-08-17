@@ -9,7 +9,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "TB_CATEGORY")
-public class Category {
+public class CategoryEntity {
     @GeneratedValue
     @Id
     private Long categorySeq;

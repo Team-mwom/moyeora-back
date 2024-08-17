@@ -12,14 +12,14 @@ import static javax.persistence.FetchType.LAZY;
 @NoArgsConstructor
 @Entity
 @Table(name = "TB_MOYEORA_PLACE")
-public class MoyeoraPlace extends BaseEntity {
+public class MoyeoraPlaceEntity extends BaseEntity {
 
     @Id @GeneratedValue
     private Long myrPlaceSeq; //모여라장소일련번호
 
     @OneToOne(fetch = LAZY)
     @JoinColumn(name = "MYR_SEQ")
-    private Moyeora moyeora;
+    private MoyeoraEntity moyeora;
 
     @Column(nullable = false)
     private String myrLongitude; // 경도

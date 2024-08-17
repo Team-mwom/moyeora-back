@@ -1,14 +1,12 @@
 package com.mwom.moyeora.database.repository;
 
-import com.mwom.moyeora.database.entity.Moyeora;
-import com.mwom.moyeora.database.entity.MoyeoraInfo;
-import com.mwom.moyeora.database.entity.MoyeoraPlace;
+import com.mwom.moyeora.database.entity.MoyeoraPlaceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MoyeoraPlaceRepository extends JpaRepository<MoyeoraPlace, Long> {
+public interface MoyeoraPlaceRepository extends JpaRepository<MoyeoraPlaceEntity, Long> {
 
-    MoyeoraPlace save(MoyeoraPlace moyeoraPlace);
+    MoyeoraPlaceEntity save(MoyeoraPlaceEntity moyeoraPlace);
 
 }

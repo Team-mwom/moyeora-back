@@ -2,7 +2,6 @@ package com.mwom.moyeora.database.entity;
 
 import com.mwom.moyeora.database.entity.common.BaseEntity;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -20,7 +19,7 @@ import static javax.persistence.FetchType.LAZY;
 @DynamicUpdate
 @Entity
 @Table(name = "TB_MOYEORA")
-public class Moyeora extends BaseEntity {
+public class MoyeoraEntity extends BaseEntity {
 
     @Id @GeneratedValue
     private Long myrSeq;
@@ -28,17 +27,17 @@ public class Moyeora extends BaseEntity {
     //서브카테고리(TB_SUB_CATEGORY)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SUB_CATEGORY_SEQ")
-    private SubCategory subCategory;
+    private SubCategoryEntity subCategory;
 
     //장소(TB_MOYEORA_PLACE)
     @OneToOne(fetch = LAZY)
     @JoinColumn(name = "myr_seq")
-    private MoyeoraPlace moyeoraPlace; //모여라 장소
+    private MoyeoraPlaceEntity moyeoraPlace; //모여라 장소
 
     //가입(TB_MOYEORA_MEMBER)
     // 양방향
     @OneToMany(mappedBy = "moyeora")
-    private List<MoyeoraMember> moyeoraMembers = new ArrayList<>();
+    private List<MoyeoraMemberEntity> moyeoraMembers = new ArrayList<>();
 
     @Column(nullable = false)
     private String myrTitle; //제목
