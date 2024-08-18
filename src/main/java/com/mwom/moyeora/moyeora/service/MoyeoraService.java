@@ -1,10 +1,14 @@
 package com.mwom.moyeora.moyeora.service;
 
-import com.mwom.moyeora.common.MemberSeq;
+import com.mwom.moyeora.database.dto.MoyeoraDto;
+import com.mwom.moyeora.database.dto.MoyeoraInfoDto;
 import com.mwom.moyeora.database.dto.MoyeoraMainDto;
-import com.mwom.moyeora.database.entity.Moyeora;
-import com.mwom.moyeora.database.entity.MoyeoraInfo;
+import com.mwom.moyeora.database.dto.MoyeoraPlaceDto;
+import com.mwom.moyeora.database.entity.MoyeoraEntity;
+import com.mwom.moyeora.database.entity.MoyeoraInfoEntity;
+import com.mwom.moyeora.database.entity.MoyeoraPlaceEntity;
 import com.mwom.moyeora.database.repository.MoyeoraInfoRepository;
+import com.mwom.moyeora.database.repository.MoyeoraPlaceRepository;
 import com.mwom.moyeora.database.repository.MoyeoraRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,16 +26,49 @@ public class MoyeoraService {
     @Autowired
     private MoyeoraInfoRepository moyeoraInfoRepository;
 
-    public MoyeoraMainDto insertMoyeoraInfo (MoyeoraMainDto moyeoraMainDto) {
-        Moyeora moyeora = new Moyeora();
+    @Autowired
+    private MoyeoraPlaceRepository moyeoraPlaceRepository;
 
-        MoyeoraInfo moyeoraInfo = new MoyeoraInfo();
+    /**
+     * 모여라 생성
+     * @param moyeoraMainDto
+     * @return int
+     */
+    public int insertMoyeoraInfo (MoyeoraMainDto moyeoraMainDto) {
+        // 1. 모여라 Insert
+        // 2. 모여라 상세 Insert
+        // 3. 모여라 장소 Insert
+        int result = -1;
 
-        moyeora = moyeoraMainDto.getMoyeora();
-        moyeoraInfo = moyeoraMainDto.getMoyeoraInfo();
+        // Dto 변수 생성
+        MoyeoraDto moyeoraDto = new MoyeoraDto();
+        MoyeoraInfoDto moyeoraInfoDto = new MoyeoraInfoDto();
+        MoyeoraPlaceDto moyeoraPlaceDto = new MoyeoraPlaceDto();
 
+        moyeoraDto = moyeoraMainDto.getMoyeoraDto();
+        moyeoraInfoDto = moyeoraMainDto.getMoyeoraInfoDto();
+        moyeoraPlaceDto = moyeoraMainDto.getMoyeoraPlaceDto();
 
-        return moyeoraMainDto;
+        System.out.println("moyeoraMainDto Value = " + moyeoraMainDto);
+        System.out.println("moyeoraDto Value = " + moyeoraDto);
+        System.out.println("moyeoraInfoDto Value = " + moyeoraInfoDto);
+        System.out.println("moyeoraPlaceDto Value = " + moyeoraPlaceDto);
+
+        // Entity에 Insert
+        MoyeoraEntity moyeora = new MoyeoraEntity();
+        // 1. 모여라 Insert
+//        moyeora = moyeoraRepository.save(moyeora);
+
+        MoyeoraInfoEntity moyeoraInfo = new MoyeoraInfoEntity();
+        moyeoraInfo.setMyrSeq(moyeoraInfo.getMyrSeq());
+        // 2. 모여라 상세 Insert
+//        moyeoraInfo = moyeoraInfoRepository.save(moyeoraInfo);
+
+        MoyeoraPlaceEntity moyeoraPlace = new MoyeoraPlaceEntity();
+        // 3. 모여라 장소 Insert
+//        moyeoraPlace = moyeoraPlaceRepository.save(moyeoraPlace);
+
+        return result;
     }
 
 //    private final MoyeoraMapper moyeoraMapper;

@@ -9,14 +9,14 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "TB_SUB_CATEGORY")
-public class SubCategory {
+public class SubCategoryEntity {
     @GeneratedValue
     @Id
     private Long subCategorySeq; // 카테고리 일련번호
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CATEGORY_SEQ")
-    private Category category;
+    private CategoryEntity categoryEntity;
 
     @Column(nullable = false)
     private String subCategoryName; //카테고리 이름

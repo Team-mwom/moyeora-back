@@ -1,6 +1,6 @@
 package com.mwom.moyeora.main.service;
 
-import com.mwom.moyeora.database.entity.Moyeora;
+import com.mwom.moyeora.database.entity.MoyeoraEntity;
 import com.mwom.moyeora.database.repository.MainRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +18,16 @@ public class MainService {
     @Autowired
     private final MainRepository mainRepository;
 
-    public List<Moyeora> selectTodayMoyeoraList() {
-        List<Moyeora> moyeoraList = mainRepository.findTop4ByOrderByRegDtDesc();
+    public List<MoyeoraEntity> selectTodayMoyeoraList() {
+        List<MoyeoraEntity> moyeoraList = mainRepository.findTop4ByOrderByRegDtDesc();
         return moyeoraList;
     }
 
-    public Page<Moyeora> selectMoyeoraList(Pageable pageable) {
+    public Page<MoyeoraEntity> selectMoyeoraList(Pageable pageable) {
         return mainRepository.selectMoyeoraList(pageable);
     }
 
-    public Page<Moyeora> selectMainSearch(String word, int page, int size) {
+    public Page<MoyeoraEntity> selectMainSearch(String word, int page, int size) {
         return mainRepository.findByMyrTitleContaining(word, PageRequest.of(page, size));
     }
 }
