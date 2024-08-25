@@ -21,9 +21,9 @@ public class MoyeoraVo {
     private int myrMemberCnt;
     private int myrMaxMember;
     private LocalDateTime myrDate;
-    private String regId;
+    private long regId;
     private LocalDateTime regDt;
-    private String modId;
+    private long modId;
     private LocalDateTime modDt;
 
     public MoyeoraVo(MoyeoraEntity moyeora) {
