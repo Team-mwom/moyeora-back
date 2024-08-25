@@ -38,12 +38,6 @@ public class MoyeoraInfoEntity extends BaseEntity {
     @Column(name = "MYR_MAX_AGE", nullable = true, length = 3)
     private int myrMaxAge;
 
-    @Column(name = "MYR_PRICE", nullable = true, length = 64)
-    private int myrPrice;
-
-    @Column(name = "MYR_PRICE_INFO")
-    private String myrPriceInfo;
-
     @Column(name = "MYR_QUESTION1")
     private String myrQusetion1;
 
@@ -52,4 +46,7 @@ public class MoyeoraInfoEntity extends BaseEntity {
 
     @Column(name = "MYR_QUESTION3")
     private String myrQusetion3;
+
+    @Column(name = "MYR_OWNER_NAME")
+    private String myrOwnerName;
 }
