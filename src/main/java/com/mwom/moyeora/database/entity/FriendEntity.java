@@ -17,30 +17,28 @@ import javax.transaction.Transactional;
 @Entity
 @Data
 @Transactional
-@DynamicInsert//insert시 null인값 무시 : DB에서 값이 없어도 자동 기본값 들어가는 애들한테 jpa가 null값을 넣을라하 하는거 막음
+@DynamicInsert//insert시 null인값 무시 : DB에서 값이 없어도 자동 기본값 들어가는 애들한테 jpa가 null값을 넣을라하는거 막음
 @DynamicUpdate
-@Table(name="TB_MEMBER")
-public class MemberEntity extends BaseEntity {
+@Table(name="TB_MEMBER_FRIEND")
+public class FriendEntity extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "MEMBER_FRIEND_SEQ")
+  private long memberFriendSeq;
+
   @Column(name = "MEMBER_SEQ")
   private long memberSeq;
 
-
-  @Column(nullable = true, length = 50)
-  private String role,name,nickName,email;
-
-  @Column(nullable = true, length = 50)
-  private String kakao;
-
-  @Column(name = "REFRESH_TOKEN")
-  private String refreshToken;
+  @Column(name = "FRIEND_MEMBER_SEQ")
+  private long friendMemberSeq;
 
 
 
-  @OneToOne(mappedBy="memberEntity")
-  private MemberInfoEntity memberInfoEntity;
+
 
 
 }
+
+
+

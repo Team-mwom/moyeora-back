@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
   Optional<MemberEntity> findByKakao(String kakao);
 
- MemberEntity findTopByMemberSeq(int member_seq);
+ MemberEntity findTopByMemberSeq(long member_seq);
 
   public MemberEntity save(MemberEntity memberEntity);
 

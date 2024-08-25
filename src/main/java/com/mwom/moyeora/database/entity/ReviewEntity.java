@@ -25,12 +25,14 @@ public class ReviewEntity extends BaseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "MEMBER_REVIEW_SEQ")
-  private int memberReviewSeq;
+  private long memberReviewSeq;
 
   @Column(name = "MEMBER_SEQ")
-  private int memberSeq;
+  private long memberSeq;
 
-  private int writer,star;
+  private long writer;
+
+  private int star;
 
 
   private String content;
