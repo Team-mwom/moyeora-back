@@ -49,10 +49,10 @@ public class MoyeoraService {
         moyeoraInfoDto = moyeoraMainDto.getMoyeoraInfoDto();
         moyeoraPlaceDto = moyeoraMainDto.getMoyeoraPlaceDto();
 
-        System.out.println("moyeoraMainDto Value = " + moyeoraMainDto);
-        System.out.println("moyeoraDto Value = " + moyeoraDto);
-        System.out.println("moyeoraInfoDto Value = " + moyeoraInfoDto);
-        System.out.println("moyeoraPlaceDto Value = " + moyeoraPlaceDto);
+        System.out.println("moyeoraMainDto Service Value = " + moyeoraMainDto);
+        System.out.println("moyeoraDto Service Value = " + moyeoraDto);
+        System.out.println("moyeoraInfoDto Service Value = " + moyeoraInfoDto);
+        System.out.println("moyeoraPlaceDto Service Value = " + moyeoraPlaceDto);
 
         // Entity에 Insert
         MoyeoraEntity moyeora = new MoyeoraEntity();
