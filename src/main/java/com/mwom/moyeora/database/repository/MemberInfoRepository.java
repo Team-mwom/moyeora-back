@@ -9,7 +9,7 @@ public interface MemberInfoRepository extends JpaRepository<MemberEntity, Long> 
   public MemberInfoEntity save(MemberInfoEntity memberInfoEntity);
 
 
-  public MemberEntity findTopByMemberSeq(int memberSeq);
+  public MemberEntity findTopByMemberSeq(long memberSeq);
 
 
 }
