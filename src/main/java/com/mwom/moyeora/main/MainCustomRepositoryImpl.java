@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -16,15 +17,16 @@ public class MainCustomRepositoryImpl implements MainCustomRepository {
     @Override
     public Page<MoyeoraEntity> selectMoyeoraList(Pageable pageable) {
 
-        List<MoyeoraEntity> moyeoraList  = entityManager.createQuery("SELECT m FROM MoyeoraEntity m", MoyeoraEntity.class)
-                .setFirstResult(pageable.getPageNumber() * pageable.getPageSize())
-                .setMaxResults(pageable.getPageSize())
-                .getResultList();
+        String queryStr = "SELECT m FROM MoyeoraEntity m ORDER BY m.regDt DESC";
+        TypedQuery<MoyeoraEntity> query = entityManager.createQuery(queryStr, MoyeoraEntity.class);
+        query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
+        query.setMaxResults(pageable.getPageSize());
+        List<MoyeoraEntity> moyeoraList = query.getResultList();
 
-        // 페이징 정보 설정
-        long count = entityManager.createQuery("SELECT COUNT(m) FROM MoyeoraEntity m", Long.class)
+        String countQueryStr = "SELECT COUNT(m) FROM MoyeoraEntity m";
+        long totalRecords = entityManager.createQuery(countQueryStr, Long.class)
                 .getSingleResult();
 
-        return new PageImpl<>(moyeoraList, pageable, count);
+        return new PageImpl<>(moyeoraList, pageable, totalRecords);
     }
 }
