@@ -9,7 +9,7 @@ public class MoyeoraPlaceDto {
     private long myrSeq;
     private String myrAddressNumber;
     private String myrAddressLocation;
-    private long myrPlace;
+    private String myrPlace;
     private long myrLongitude;
     private long myrLatitude;
     private String myrSido;
