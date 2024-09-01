@@ -55,18 +55,18 @@ public class MoyeoraService {
         System.out.println("moyeoraPlaceDto Service Value = " + moyeoraPlaceDto);
 
         // Entity에 Insert
-        MoyeoraEntity moyeora = new MoyeoraEntity();
+        MoyeoraEntity moyeoraEntity = MoyeoraEntity.toEntity(moyeoraDto);
         // 1. 모여라 Insert
-//        moyeora = moyeoraRepository.save(moyeora);
+        moyeoraEntity = moyeoraRepository.save(moyeoraEntity);
 
-        MoyeoraInfoEntity moyeoraInfo = new MoyeoraInfoEntity();
-        moyeoraInfo.setMyrSeq(moyeoraInfo.getMyrSeq());
+        MoyeoraInfoEntity moyeoraInfoEntity = MoyeoraInfoEntity.toEntity(moyeoraInfoDto);
+        moyeoraInfoEntity.setMyrSeq(moyeoraEntity.getMyrSeq());
         // 2. 모여라 상세 Insert
-//        moyeoraInfo = moyeoraInfoRepository.save(moyeoraInfo);
+        moyeoraInfoEntity = moyeoraInfoRepository.save(moyeoraInfoEntity);
 
-        MoyeoraPlaceEntity moyeoraPlace = new MoyeoraPlaceEntity();
+        MoyeoraPlaceEntity moyeoraPlaceEntity = MoyeoraPlaceEntity.toEntity(moyeoraPlaceDto);
         // 3. 모여라 장소 Insert
-//        moyeoraPlace = moyeoraPlaceRepository.save(moyeoraPlace);
+        moyeoraPlaceEntity = moyeoraPlaceRepository.save(moyeoraPlaceEntity);
 
         return result;
     }
