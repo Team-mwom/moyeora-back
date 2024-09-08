@@ -14,4 +14,6 @@ public interface MainRepository extends JpaRepository<MoyeoraEntity, Long>, Main
     Page<MoyeoraEntity> selectMoyeoraList(Pageable pageable);
 
     Page<MoyeoraEntity> findByMyrTitleContaining(String searchKeyword, Pageable pageable);
+
+
 }

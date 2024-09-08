@@ -1,6 +1,8 @@
 package com.mwom.moyeora.main.controller;
 
+import com.mwom.moyeora.database.entity.CategoryEntity;
 import com.mwom.moyeora.database.entity.MoyeoraEntity;
+import com.mwom.moyeora.database.entity.SubCategoryEntity;
 import com.mwom.moyeora.main.service.MainService;
 import com.mwom.moyeora.database.vo.MoyeoraVo;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,5 +67,30 @@ public class MainController {
         response.put("size", searchList.getSize());
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/selectSearchModalData")
+    public Map<String, Object> selectSearchModalData(){
+
+        // 카테고리와 시군구 반환을 위한 Map
+        Map<String, Object> searchModalDataMap = new HashMap<>();
+
+        // 카테고리 List
+        List<CategoryEntity> categoryList = mainService.selectCategoryList("Y");
+        searchModalDataMap.put("categories", categoryList);
+
+        // 서브카테고리 List
+        List<SubCategoryEntity> subCategoryList = mainService.selectsubCategoryList();
+        searchModalDataMap.put("subCategories", subCategoryList);
+
+        System.out.println("subCategoryList = " + subCategoryList);
+        
+        //List<String> subCategoryList = new ArrayList<>();
+
+        //시군구 데이터
+
+
+
+        return searchModalDataMap;
     }
 }
