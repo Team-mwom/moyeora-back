@@ -6,14 +6,18 @@ import com.mwom.moyeora.database.dto.MoyeoraMainDto;
 import com.mwom.moyeora.database.dto.MoyeoraPlaceDto;
 import com.mwom.moyeora.database.entity.MoyeoraEntity;
 import com.mwom.moyeora.database.entity.MoyeoraInfoEntity;
+import com.mwom.moyeora.database.entity.MoyeoraMemberEntity;
 import com.mwom.moyeora.database.entity.MoyeoraPlaceEntity;
 import com.mwom.moyeora.database.repository.MoyeoraInfoRepository;
+import com.mwom.moyeora.database.repository.MoyeoraMemberRepository;
 import com.mwom.moyeora.database.repository.MoyeoraPlaceRepository;
 import com.mwom.moyeora.database.repository.MoyeoraRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +32,9 @@ public class MoyeoraService {
 
     @Autowired
     private MoyeoraPlaceRepository moyeoraPlaceRepository;
+
+    @Autowired
+    private MoyeoraMemberRepository moyeoraMemberRepository;
 
     /**
      * 모여라 생성
@@ -92,4 +99,11 @@ public class MoyeoraService {
 //        return map;
 //        return null;
 //    }
+
+
+    public void selectActiveMoyeora(String nickName){
+        List<MoyeoraMemberEntity> moyeoraMemberEntityList= moyeoraMemberRepository.findAllByMemberMemberSeq(62);
+    }
+
+
 }

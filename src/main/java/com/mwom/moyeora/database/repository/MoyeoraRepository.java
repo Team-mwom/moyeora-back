@@ -4,6 +4,8 @@ import com.mwom.moyeora.database.entity.MoyeoraEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface MoyeoraRepository extends JpaRepository<MoyeoraEntity, Long> {
 
@@ -12,4 +14,6 @@ public interface MoyeoraRepository extends JpaRepository<MoyeoraEntity, Long> {
 //    List<Moyeora> findTop4ByOrderByRegDtDesc();
 //
 //    Page<Moyeora> selectMoyeoraList(SearchVo searchVo, Pageable pageable);
+
+
 }
