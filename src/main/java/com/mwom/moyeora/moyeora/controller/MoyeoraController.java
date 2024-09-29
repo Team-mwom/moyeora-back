@@ -31,6 +31,7 @@ public class MoyeoraController {
     @PostMapping("/user/moyeora/create-moyeora")
     public int insertMoyeoraInfo(@RequestBody MoyeoraMainDto moyeoraMainDto) {
         int result = -1;
+        System.out.println("moyeoraMainDto Controller Value = " + moyeoraMainDto);
 
         result += moyeoraService.insertMoyeoraInfo(moyeoraMainDto);
 

@@ -13,10 +13,9 @@ public class MoyeoraInfoDto {
     private String myrApprovalYn;
     private int myrMinAge;
     private int myrMaxAge;
-    private String myrPrice;
-    private String myrPriceInfo;
     private String myrQuestion1;
     private String myrQuestion2;
     private String myrQuestion3;
+    private String myrOwnerName;
 
 }

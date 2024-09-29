@@ -1,5 +1,7 @@
 package com.mwom.moyeora.database.entity;
 
+import com.mwom.moyeora.database.dto.MoyeoraDto;
+import com.mwom.moyeora.database.dto.MoyeoraInfoDto;
 import com.mwom.moyeora.database.entity.common.BaseEntity;
 import lombok.*;
 
@@ -9,6 +11,8 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Entity
+@AllArgsConstructor
+@Builder
 @Table(name="TB_MOYEORA_INFO")
 public class MoyeoraInfoEntity extends BaseEntity {
 
@@ -38,18 +42,32 @@ public class MoyeoraInfoEntity extends BaseEntity {
     @Column(name = "MYR_MAX_AGE", nullable = true, length = 3)
     private int myrMaxAge;
 
-    @Column(name = "MYR_PRICE", nullable = true, length = 64)
-    private int myrPrice;
-
-    @Column(name = "MYR_PRICE_INFO")
-    private String myrPriceInfo;
-
     @Column(name = "MYR_QUESTION1")
-    private String myrQusetion1;
+    private String myrQuestion1;
 
     @Column(name = "MYR_QUESTION2")
-    private String myrQusetion2;
+    private String myrQuestion2;
 
     @Column(name = "MYR_QUESTION3")
-    private String myrQusetion3;
+    private String myrQuestion3;
+
+    @Column(name = "MYR_OWNER_NAME")
+    private String myrOwnerName;
+
+    public static MoyeoraInfoEntity toEntity(MoyeoraInfoDto moyeoraInfoDto) {
+        return MoyeoraInfoEntity.builder()
+                .myrInfoSeq(moyeoraInfoDto.getMyrInfoSeq())
+                .myrSeq(moyeoraInfoDto.getMyrSeq())
+                .myrIntroduce(moyeoraInfoDto.getMyrIntroduce())
+                .myrOwnerIntroduce(moyeoraInfoDto.getMyrOwnerIntroduce())
+                .myrGenderYn(moyeoraInfoDto.getMyrGenderYn())
+                .myrApprovalYn(moyeoraInfoDto.getMyrApprovalYn())
+                .myrMinAge(moyeoraInfoDto.getMyrMinAge())
+                .myrMaxAge(moyeoraInfoDto.getMyrMaxAge())
+                .myrQuestion1(moyeoraInfoDto.getMyrQuestion1())
+                .myrQuestion2(moyeoraInfoDto.getMyrQuestion2())
+                .myrQuestion3(moyeoraInfoDto.getMyrQuestion3())
+                .myrOwnerName(moyeoraInfoDto.getMyrOwnerName())
+                .build();
+    }
 }
