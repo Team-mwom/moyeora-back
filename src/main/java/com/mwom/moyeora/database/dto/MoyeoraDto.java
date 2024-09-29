@@ -11,5 +11,6 @@ public class MoyeoraDto {
     private String myrTags;
     private String myrMainImg;
     private long myrMaxMember;
+    private String categoryName,subCategoryName;
 
 }

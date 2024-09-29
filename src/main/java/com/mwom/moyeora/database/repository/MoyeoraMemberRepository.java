@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface MoyeoraMemberRepository extends JpaRepository<MoyeoraMemberEntity, Long> {
 
- public List<MoyeoraMemberEntity> findAllByMemberMemberSeq(long memberSeq);
+ public List<MoyeoraMemberEntity> findAllByMemberNickName(String nickName);
 
 }

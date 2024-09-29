@@ -1,6 +1,7 @@
 package com.mwom.moyeora.moyeora.controller;
 
 import com.mwom.moyeora.common.MemberSeq;
+import com.mwom.moyeora.database.dto.MoyeoraDto;
 import com.mwom.moyeora.database.dto.MoyeoraMainDto;
 import com.mwom.moyeora.database.entity.MoyeoraEntity;
 import com.mwom.moyeora.database.vo.MoyeoraVo;
@@ -36,11 +37,10 @@ public class MoyeoraController {
         return result;
     }
 
-    @GetMapping("all/moyeora/active-moyeora")//참여한 모여라 검색
-    public List<MoyeoraEntity> selectActiveMoyeora (String nickName){
+    @GetMapping("/all/moyeora/active-moyeora")//참여한 모여라 검색
+    public List<MoyeoraDto> selectActiveMoyeora (String nickName){
 
-        System.out.println("nickName = " + nickName);
-        moyeoraService.selectActiveMoyeora(nickName);
-        return null;
+
+        return  moyeoraService.selectActiveMoyeora(nickName);
     }
 }
