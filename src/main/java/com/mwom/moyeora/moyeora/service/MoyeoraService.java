@@ -113,8 +113,8 @@ public class MoyeoraService {
           moyeoraDto.setMyrMainImg(moyeoraEntity.getMyrMainImg());
           moyeoraDto.setMyrTitle(moyeoraEntity.getMyrTitle());
           moyeoraDto.setMyrMaxMember(moyeoraEntity.getMyrMaxMember());
-          moyeoraDto.setCategoryName(moyeoraEntity.getSubCategory().getCategoryEntity().getCategoryName());
-          moyeoraDto.setSubCategoryName(moyeoraEntity.getSubCategory().getSubCategoryName());
+          moyeoraDto.setCategoryName(moyeoraEntity.getSubCategoryEntity().getCategoryEntity().getCategoryName());
+          moyeoraDto.setSubCategoryName(moyeoraEntity.getSubCategoryEntity().getSubCategoryName());
           moyeoraDtoList.add(moyeoraDto);
 
         }
