@@ -82,6 +82,7 @@ public class MoyeoraService {
         moyeoraInfoEntity = moyeoraInfoRepository.save(moyeoraInfoEntity);
 
         MoyeoraPlaceEntity moyeoraPlaceEntity = MoyeoraPlaceEntity.toEntity(moyeoraPlaceDto);
+        moyeoraPlaceEntity.setMyrSeq(moyeoraEntity.getMyrSeq());
         // 3. 모여라 장소 Insert
         moyeoraPlaceEntity = moyeoraPlaceRepository.save(moyeoraPlaceEntity);
 
