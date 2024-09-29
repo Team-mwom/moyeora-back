@@ -4,6 +4,7 @@ import com.mwom.moyeora.database.dto.MoyeoraDto;
 import com.mwom.moyeora.database.dto.MoyeoraInfoDto;
 import com.mwom.moyeora.database.entity.common.BaseEntity;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
@@ -13,12 +14,13 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @Builder
+@DynamicInsert
 @Table(name="TB_MOYEORA_INFO")
 public class MoyeoraInfoEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
-    @Column(name = "MRY_INFO_SEQ", nullable = true, length = 11)
+    @Column(name = "MYR_INFO_SEQ", nullable = true, length = 11)
     private Long myrInfoSeq;
 
     @Column(name = "MYR_SEQ", nullable = true, length = 11)
