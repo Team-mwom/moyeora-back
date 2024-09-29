@@ -6,14 +6,19 @@ import com.mwom.moyeora.database.dto.MoyeoraMainDto;
 import com.mwom.moyeora.database.dto.MoyeoraPlaceDto;
 import com.mwom.moyeora.database.entity.MoyeoraEntity;
 import com.mwom.moyeora.database.entity.MoyeoraInfoEntity;
+import com.mwom.moyeora.database.entity.MoyeoraMemberEntity;
 import com.mwom.moyeora.database.entity.MoyeoraPlaceEntity;
 import com.mwom.moyeora.database.repository.MoyeoraInfoRepository;
+import com.mwom.moyeora.database.repository.MoyeoraMemberRepository;
 import com.mwom.moyeora.database.repository.MoyeoraPlaceRepository;
 import com.mwom.moyeora.database.repository.MoyeoraRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +33,9 @@ public class MoyeoraService {
 
     @Autowired
     private MoyeoraPlaceRepository moyeoraPlaceRepository;
+
+    @Autowired
+    private MoyeoraMemberRepository moyeoraMemberRepository;
 
     /**
      * 모여라 생성
@@ -92,4 +100,27 @@ public class MoyeoraService {
 //        return map;
 //        return null;
 //    }
+
+
+    public List<MoyeoraDto> selectActiveMoyeora(String nickName){
+        List<MoyeoraMemberEntity> moyeoraMemberEntityList= moyeoraMemberRepository.findAllByMemberNickName(nickName);
+        List<MoyeoraDto> moyeoraDtoList = new ArrayList<>();
+        for(int i=0;i<moyeoraMemberEntityList.size();i++){
+          MoyeoraEntity moyeoraEntity =moyeoraMemberEntityList.get(i).getMoyeora();
+          MoyeoraDto moyeoraDto = new MoyeoraDto();
+          moyeoraDto.setMyrSeq(moyeoraEntity.getMyrSeq());
+          moyeoraDto.setMyrTags(moyeoraEntity.getMyrTags());
+          moyeoraDto.setMyrMainImg(moyeoraEntity.getMyrMainImg());
+          moyeoraDto.setMyrTitle(moyeoraEntity.getMyrTitle());
+          moyeoraDto.setMyrMaxMember(moyeoraEntity.getMyrMaxMember());
+          moyeoraDto.setCategoryName(moyeoraEntity.getSubCategory().getCategoryEntity().getCategoryName());
+          moyeoraDto.setSubCategoryName(moyeoraEntity.getSubCategory().getSubCategoryName());
+          moyeoraDtoList.add(moyeoraDto);
+
+        }
+
+       return moyeoraDtoList;
+    }
+
+
 }

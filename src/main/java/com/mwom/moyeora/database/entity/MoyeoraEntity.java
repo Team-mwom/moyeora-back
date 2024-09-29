@@ -26,7 +26,8 @@ import static javax.persistence.FetchType.LAZY;
 @Table(name = "TB_MOYEORA")
 public class MoyeoraEntity extends BaseEntity {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long myrSeq;
 
     //서브카테고리(TB_SUB_CATEGORY)
