@@ -1,10 +1,12 @@
 package com.mwom.moyeora.database.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Data
 @Getter
 @NoArgsConstructor
 @Entity

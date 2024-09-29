@@ -4,10 +4,7 @@ import com.mwom.moyeora.database.dto.MoyeoraDto;
 import com.mwom.moyeora.database.dto.MoyeoraInfoDto;
 import com.mwom.moyeora.database.dto.MoyeoraMainDto;
 import com.mwom.moyeora.database.dto.MoyeoraPlaceDto;
-import com.mwom.moyeora.database.entity.MoyeoraEntity;
-import com.mwom.moyeora.database.entity.MoyeoraInfoEntity;
-import com.mwom.moyeora.database.entity.MoyeoraMemberEntity;
-import com.mwom.moyeora.database.entity.MoyeoraPlaceEntity;
+import com.mwom.moyeora.database.entity.*;
 import com.mwom.moyeora.database.repository.MoyeoraInfoRepository;
 import com.mwom.moyeora.database.repository.MoyeoraMemberRepository;
 import com.mwom.moyeora.database.repository.MoyeoraPlaceRepository;
@@ -64,6 +61,18 @@ public class MoyeoraService {
 
         // Entity에 Insert
         MoyeoraEntity moyeoraEntity = MoyeoraEntity.toEntity(moyeoraDto);
+
+
+
+
+        //////
+        SubCategoryEntity subCategoryEntity = new SubCategoryEntity();//서브카테고리 객체를 만들고
+        subCategoryEntity.setSubCategorySeq(moyeoraDto.getSubCategorySeq());//거기에 받은 시퀀스를 박고
+        moyeoraEntity.setSubCategoryEntity(subCategoryEntity);//그걸 세이브 할 moyeoraEntity에 장착
+        ////이런 느낌이고 toEntity에서 해줘도 될듯 아님 그냥 여기서 해도 되고
+
+
+
         // 1. 모여라 Insert
         moyeoraEntity = moyeoraRepository.save(moyeoraEntity);
 
