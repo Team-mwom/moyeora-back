@@ -16,6 +16,11 @@ public class MoyeoraMemberEntity extends BaseEntity {
     @Id @GeneratedValue
     private Long myrMemberSeq; // 모여라 멤버 일련번호
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MEMBER_SEQ")
+    private MemberEntity member;
+
     // 모여라(TB_MOYEORA)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MYR_SEQ")

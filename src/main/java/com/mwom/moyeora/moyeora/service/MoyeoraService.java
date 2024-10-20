@@ -4,16 +4,18 @@ import com.mwom.moyeora.database.dto.MoyeoraDto;
 import com.mwom.moyeora.database.dto.MoyeoraInfoDto;
 import com.mwom.moyeora.database.dto.MoyeoraMainDto;
 import com.mwom.moyeora.database.dto.MoyeoraPlaceDto;
-import com.mwom.moyeora.database.entity.MoyeoraEntity;
-import com.mwom.moyeora.database.entity.MoyeoraInfoEntity;
-import com.mwom.moyeora.database.entity.MoyeoraPlaceEntity;
+import com.mwom.moyeora.database.entity.*;
 import com.mwom.moyeora.database.repository.MoyeoraInfoRepository;
+import com.mwom.moyeora.database.repository.MoyeoraMemberRepository;
 import com.mwom.moyeora.database.repository.MoyeoraPlaceRepository;
 import com.mwom.moyeora.database.repository.MoyeoraRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +30,9 @@ public class MoyeoraService {
 
     @Autowired
     private MoyeoraPlaceRepository moyeoraPlaceRepository;
+
+    @Autowired
+    private MoyeoraMemberRepository moyeoraMemberRepository;
 
     /**
      * 모여라 생성
@@ -55,18 +60,31 @@ public class MoyeoraService {
         System.out.println("moyeoraPlaceDto Service Value = " + moyeoraPlaceDto);
 
         // Entity에 Insert
-        MoyeoraEntity moyeora = new MoyeoraEntity();
+        MoyeoraEntity moyeoraEntity = MoyeoraEntity.toEntity(moyeoraDto);
+
+
+
+
+        //////
+        SubCategoryEntity subCategoryEntity = new SubCategoryEntity();//서브카테고리 객체를 만들고
+        subCategoryEntity.setSubCategorySeq(moyeoraDto.getSubCategorySeq());//거기에 받은 시퀀스를 박고
+        moyeoraEntity.setSubCategoryEntity(subCategoryEntity);//그걸 세이브 할 moyeoraEntity에 장착
+        ////이런 느낌이고 toEntity에서 해줘도 될듯 아님 그냥 여기서 해도 되고
+
+
+
         // 1. 모여라 Insert
-//        moyeora = moyeoraRepository.save(moyeora);
+        moyeoraEntity = moyeoraRepository.save(moyeoraEntity);
 
-        MoyeoraInfoEntity moyeoraInfo = new MoyeoraInfoEntity();
-        moyeoraInfo.setMyrSeq(moyeoraInfo.getMyrSeq());
+        MoyeoraInfoEntity moyeoraInfoEntity = MoyeoraInfoEntity.toEntity(moyeoraInfoDto);
+        moyeoraInfoEntity.setMyrSeq(moyeoraEntity.getMyrSeq());
         // 2. 모여라 상세 Insert
-//        moyeoraInfo = moyeoraInfoRepository.save(moyeoraInfo);
+        moyeoraInfoEntity = moyeoraInfoRepository.save(moyeoraInfoEntity);
 
-        MoyeoraPlaceEntity moyeoraPlace = new MoyeoraPlaceEntity();
+        MoyeoraPlaceEntity moyeoraPlaceEntity = MoyeoraPlaceEntity.toEntity(moyeoraPlaceDto);
+        moyeoraPlaceEntity.setMyrSeq(moyeoraEntity.getMyrSeq());
         // 3. 모여라 장소 Insert
-//        moyeoraPlace = moyeoraPlaceRepository.save(moyeoraPlace);
+        moyeoraPlaceEntity = moyeoraPlaceRepository.save(moyeoraPlaceEntity);
 
         return result;
     }
@@ -92,4 +110,27 @@ public class MoyeoraService {
 //        return map;
 //        return null;
 //    }
+
+
+    public List<MoyeoraDto> selectActiveMoyeora(String nickName){
+        List<MoyeoraMemberEntity> moyeoraMemberEntityList= moyeoraMemberRepository.findAllByMemberNickName(nickName);
+        List<MoyeoraDto> moyeoraDtoList = new ArrayList<>();
+        for(int i=0;i<moyeoraMemberEntityList.size();i++){
+          MoyeoraEntity moyeoraEntity =moyeoraMemberEntityList.get(i).getMoyeora();
+          MoyeoraDto moyeoraDto = new MoyeoraDto();
+          moyeoraDto.setMyrSeq(moyeoraEntity.getMyrSeq());
+          moyeoraDto.setMyrTags(moyeoraEntity.getMyrTags());
+          moyeoraDto.setMyrMainImg(moyeoraEntity.getMyrMainImg());
+          moyeoraDto.setMyrTitle(moyeoraEntity.getMyrTitle());
+          moyeoraDto.setMyrMaxMember(moyeoraEntity.getMyrMaxMember());
+          moyeoraDto.setCategoryName(moyeoraEntity.getSubCategoryEntity().getCategoryEntity().getCategoryName());
+          moyeoraDto.setSubCategoryName(moyeoraEntity.getSubCategoryEntity().getSubCategoryName());
+          moyeoraDtoList.add(moyeoraDto);
+
+        }
+
+       return moyeoraDtoList;
+    }
+
+
 }

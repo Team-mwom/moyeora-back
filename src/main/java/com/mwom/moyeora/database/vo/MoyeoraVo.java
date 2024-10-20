@@ -28,10 +28,10 @@ public class MoyeoraVo {
 
     public MoyeoraVo(MoyeoraEntity moyeora) {
         myrSeq = moyeora.getMyrSeq();
-        categorySeq = moyeora.getSubCategory().getCategoryEntity().getCategorySeq();
-        categoryName = moyeora.getSubCategory().getCategoryEntity().getCategoryName();
-        subCategorySeq = moyeora.getSubCategory().getSubCategorySeq();
-        subCategoryName = moyeora.getSubCategory().getSubCategoryName();
+        categorySeq = moyeora.getSubCategoryEntity().getCategoryEntity().getCategorySeq();
+        categoryName = moyeora.getSubCategoryEntity().getCategoryEntity().getCategoryName();
+        subCategorySeq = moyeora.getSubCategoryEntity().getSubCategorySeq();
+        subCategoryName = moyeora.getSubCategoryEntity().getSubCategoryName();
         myrTitle = moyeora.getMyrTitle();
         myrTags = moyeora.getMyrTags();
         myrMainImg = moyeora.getMyrMainImg();
