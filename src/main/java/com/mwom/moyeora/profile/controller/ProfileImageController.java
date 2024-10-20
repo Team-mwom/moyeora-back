@@ -45,7 +45,7 @@ public class ProfileImageController {
 @PostMapping("/user/changeProfileImg")
   public String changeProfileImg(@RequestBody MemberInfoEntity memberInfoEntity ){
 
-  int memberSeq = Integer.parseInt(MemberSeq.getCurrentMemberSeq());
+  long memberSeq = MemberSeq.getCurrentMemberSeq();
   memberInfoEntity.setMemberSeq(memberSeq);
   MemberInfoEntity entity = memberInfoRepository.findTopByMemberSeq(memberSeq).getMemberInfoEntity();
   entity.setProfileImg(memberInfoEntity.getProfileImg());

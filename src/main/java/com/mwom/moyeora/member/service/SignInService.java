@@ -63,9 +63,9 @@ public class SignInService {
   }
 
   @Transactional
-  public MemberEntity selectMemberInfo (String member_seq){
+  public MemberEntity selectMemberInfo (long member_seq){
 
-    return memberRepository.findTopByMemberSeq(Integer.parseInt(member_seq));
+    return memberRepository.findTopByMemberSeq(member_seq);
 
   }
 

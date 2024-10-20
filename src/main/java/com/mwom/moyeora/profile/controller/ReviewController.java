@@ -36,8 +36,8 @@ public class ReviewController {
 
   @PostMapping("/user/insertReview")
   public String insertReview(@RequestBody ReviewDto memberReviewDto){
-    int writerSeq = Integer.parseInt(MemberSeq.getCurrentMemberSeq()) ;
-    int ownerSeq = memberRepository.findTopByNickName(memberReviewDto.getOwnerNickName()).getMemberSeq();
+    long writerSeq =MemberSeq.getCurrentMemberSeq();
+    long ownerSeq = memberRepository.findTopByNickName(memberReviewDto.getOwnerNickName()).getMemberSeq();
     ReviewEntity memberReviewEntity = new ReviewEntity();
     memberReviewEntity.setMemberSeq(ownerSeq);
     memberReviewEntity.setWriter(writerSeq);

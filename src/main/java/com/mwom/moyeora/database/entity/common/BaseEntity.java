@@ -24,13 +24,13 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity {
 //    @CreatedBy
 
-    private String regId;
+    private long regId;
 
     @CreatedDate
     private LocalDateTime regDt;
 
 //    @LastModifiedBy
-    private String modId;
+    private long modId;
 
     @LastModifiedDate
     protected LocalDateTime modDt;
