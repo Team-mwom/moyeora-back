@@ -12,5 +12,5 @@ public interface SubCategoryRepository extends JpaRepository<SubCategoryEntity, 
      * SubCategoryRepository.selectCategoryList
      * @return List<SubCategoryEntity>
      */
-    List<SubCategoryEntity> findSubCategoryList(long categorySeq);
+    List<SubCategoryEntity> findBySubCategorySeq(long categorySeq);
 }

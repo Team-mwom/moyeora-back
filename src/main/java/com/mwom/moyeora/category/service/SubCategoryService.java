@@ -24,6 +24,6 @@ public class SubCategoryService {
      */
     public List<SubCategoryEntity> findSubCategoryList(long categorySeq) {
 
-        return subCategoryRepository.findSubCategoryList(categorySeq);
+        return subCategoryRepository.findBySubCategorySeq(categorySeq);
     }
 }

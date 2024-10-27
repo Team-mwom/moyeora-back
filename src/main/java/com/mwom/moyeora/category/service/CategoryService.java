@@ -25,6 +25,6 @@ public class CategoryService {
      */
     public List<CategoryEntity> findCategoryList() {
 
-        return categoryRepository.findCategoryList();
+        return categoryRepository.findAll();
     }
 }

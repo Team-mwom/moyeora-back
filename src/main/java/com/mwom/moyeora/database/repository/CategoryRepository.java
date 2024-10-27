@@ -12,5 +12,5 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
      * CategoryRepository.selectCategoryList
      * @return List<CategoryEntity>
      */
-    List<CategoryEntity> findCategoryList();
+    List<CategoryEntity> findAll();
 }
