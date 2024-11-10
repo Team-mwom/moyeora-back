@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface SubCategoryRepository extends JpaRepository<SubCategoryEntity, Long> {
+    List<SubCategoryEntity> findAll();
 
     /**
      * 서브 카테고리 전체 검색
@@ -13,4 +14,5 @@ public interface SubCategoryRepository extends JpaRepository<SubCategoryEntity, 
      * @return List<SubCategoryEntity>
      */
     List<SubCategoryEntity> findBySubCategorySeq(long categorySeq);
+
 }
