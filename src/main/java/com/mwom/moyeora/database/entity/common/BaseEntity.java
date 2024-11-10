@@ -33,5 +33,5 @@ public abstract class BaseEntity {
     private long modId;
 
     @LastModifiedDate
-    protected LocalDateTime modDt;
+    private LocalDateTime modDt;
 }

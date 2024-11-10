@@ -19,8 +19,20 @@ public class MemberService {
 
 
 
+
   @Transactional
   public MemberEntity selectMemberByNick(String nickName) {
    return memberRepository.findTopByNickName(nickName);
+  }
+
+  @Transactional
+  public MemberEntity selectMemberBySeq(long seq) {
+    return memberRepository.findTopByMemberSeq(seq);
+  }
+
+
+  @Transactional
+  public void save(MemberEntity memberEntity) {
+    memberRepository.save(memberEntity);
   }
 }
