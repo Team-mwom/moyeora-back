@@ -7,4 +7,12 @@ import java.util.List;
 
 public interface SubCategoryRepository extends JpaRepository<SubCategoryEntity, Long> {
     List<SubCategoryEntity> findAll();
+
+    /**
+     * 서브 카테고리 전체 검색
+     * SubCategoryRepository.selectCategoryList
+     * @return List<SubCategoryEntity>
+     */
+    List<SubCategoryEntity> findBySubCategorySeq(long categorySeq);
+
 }

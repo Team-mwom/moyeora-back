@@ -1,5 +1,7 @@
 package com.mwom.moyeora.database.dto;
 
+import com.mwom.moyeora.database.entity.MoyeoraEntity;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
@@ -11,5 +13,7 @@ public class MoyeoraDto {
     private String myrTags;
     private String myrMainImg;
     private long myrMaxMember;
+    private String categoryName,subCategoryName;
+
 
 }
