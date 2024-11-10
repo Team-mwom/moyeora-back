@@ -1,6 +1,9 @@
 package com.mwom.moyeora.database.entity;
 
+import com.mwom.moyeora.database.dto.MoyeoraDto;
 import com.mwom.moyeora.database.entity.common.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
@@ -18,6 +21,8 @@ import static javax.persistence.FetchType.LAZY;
 @DynamicInsert//insert시 null인값 무시 : DB에서 값이 없어도 자동 기본값 들어가는 애들한테 jpa가 null값을 넣을라하는거 막음
 @DynamicUpdate
 @Entity
+@AllArgsConstructor
+@Builder
 @Table(name = "TB_MOYEORA")
 public class MoyeoraEntity extends BaseEntity {
 
@@ -28,7 +33,7 @@ public class MoyeoraEntity extends BaseEntity {
     //서브카테고리(TB_SUB_CATEGORY)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SUB_CATEGORY_SEQ")
-    private SubCategoryEntity subCategory;
+    private SubCategoryEntity subCategoryEntity;
 
     //장소(TB_MOYEORA_PLACE)
     @OneToOne(fetch = LAZY)
@@ -43,6 +48,8 @@ public class MoyeoraEntity extends BaseEntity {
     @Column(nullable = false)
     private String myrTitle; //제목
 
+//    private long subCategorySeq; //태그
+
     private String myrTags; //태그
 
     private String myrMainImg; //메인이미지
@@ -50,4 +57,15 @@ public class MoyeoraEntity extends BaseEntity {
     private int myrMaxMember; //최대인원수
 
     private LocalDateTime myrDate; //모임날
+
+    public static MoyeoraEntity toEntity(MoyeoraDto moyeoraDto) {
+        return MoyeoraEntity.builder()
+                .myrSeq(moyeoraDto.getMyrSeq())
+//                .subCategorySeq(moyeoraDto.getSubCategorySeq())
+                .myrTitle(moyeoraDto.getMyrTitle())
+                .myrTags(moyeoraDto.getMyrTags())
+                .myrMainImg(moyeoraDto.getMyrMainImg())
+                .myrMaxMember(moyeoraDto.getMyrMaxMember())
+                .build();
+    }
 }
