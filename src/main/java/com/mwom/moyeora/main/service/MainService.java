@@ -39,11 +39,4 @@ public class MainService {
         return mainRepository.findByMyrTitleContaining(word, PageRequest.of(page, size));
     }
 
-    public List<CategoryEntity> selectCategoryList(String categoryClassYn){
-        return categoryRepository.findByCategoryClassYnEquals(categoryClassYn);
-    }
-
-    public List<SubCategoryEntity> selectsubCategoryList(){
-        return subCategoryRepository.findAll();
-    }
 }
