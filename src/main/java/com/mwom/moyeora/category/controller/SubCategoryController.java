@@ -22,14 +22,4 @@ public class SubCategoryController {
     @Autowired
     private SubCategoryService subCategoryService;
 
-    /**
-     * 서브 카테고리 검색
-     * SubCategoryController.selectSubCategoryList
-     * @return List<CategoryEntity>
-     */
-    @GetMapping("/all/sub-category/search-sub-category")
-    public List<SubCategoryEntity> findSubCategoryList (long categorySeq) {
-
-        return subCategoryService.findSubCategoryList(categorySeq);
-    }
 }
