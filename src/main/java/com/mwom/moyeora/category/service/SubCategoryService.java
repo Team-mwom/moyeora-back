@@ -19,11 +19,10 @@ public class SubCategoryService {
 
     /**
      * 서브 카테고리 전체 검색
-     * SubCategoryService.selectSubCategoryList
+     * SubCategoryService.selectsubCategoryList
      * @return List<SubCategoryEntity>
      */
-    public List<SubCategoryEntity> findSubCategoryList(long categorySeq) {
-
-        return subCategoryRepository.findBySubCategorySeq(categorySeq);
+    public List<SubCategoryEntity> selectsubCategoryList(){
+        return subCategoryRepository.findAll();
     }
 }
