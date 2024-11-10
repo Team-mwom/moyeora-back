@@ -23,8 +23,7 @@ public class CategoryService {
      * CategoryService.selectCategoryList
      * @return List<CategoryEntity>
      */
-    public List<CategoryEntity> findCategoryList() {
-
-        return categoryRepository.findAll();
+    public List<CategoryEntity> selectCategoryList(String categoryClassYn){
+        return categoryRepository.findByCategoryClassYnEquals(categoryClassYn);
     }
 }

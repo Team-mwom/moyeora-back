@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @RequestMapping("/api/all/main")
 public class MainController {
+
     private final MainService mainService;
 
     @GetMapping("/test")
@@ -69,28 +70,5 @@ public class MainController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/selectSearchModalData")
-    public Map<String, Object> selectSearchModalData(){
 
-        // 카테고리와 시군구 반환을 위한 Map
-        Map<String, Object> searchModalDataMap = new HashMap<>();
-
-        // 카테고리 List
-        List<CategoryEntity> categoryList = mainService.selectCategoryList("Y");
-        searchModalDataMap.put("categories", categoryList);
-
-        // 서브카테고리 List
-        List<SubCategoryEntity> subCategoryList = mainService.selectsubCategoryList();
-        searchModalDataMap.put("subCategories", subCategoryList);
-
-        System.out.println("subCategoryList = " + subCategoryList);
-        
-        //List<String> subCategoryList = new ArrayList<>();
-
-        //시군구 데이터
-
-
-
-        return searchModalDataMap;
-    }
 }
