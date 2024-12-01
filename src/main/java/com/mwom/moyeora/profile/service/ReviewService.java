@@ -48,6 +48,7 @@ public class ReviewService {
   }
 
   public ReviewEntity save(ReviewEntity memberReviewEntity){
+
     return memberReviewRepository.save(memberReviewEntity);
   }
 

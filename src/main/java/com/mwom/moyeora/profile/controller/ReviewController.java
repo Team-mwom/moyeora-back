@@ -43,6 +43,8 @@ public class ReviewController {
     memberReviewEntity.setWriter(writerSeq);
     memberReviewEntity.setContent(memberReviewDto.getContent());
     memberReviewEntity.setStar(memberReviewDto.getStar());
+    memberReviewEntity.setModId(writerSeq);
+    memberReviewEntity.setRegId(writerSeq);
     memberReviewService.save(memberReviewEntity);
     return "success";
   }
