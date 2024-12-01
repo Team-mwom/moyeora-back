@@ -65,7 +65,7 @@ public class MoyeoraEntity extends BaseEntity {
                 .myrTitle(moyeoraDto.getMyrTitle())
                 .myrTags(moyeoraDto.getMyrTags())
                 .myrMainImg(moyeoraDto.getMyrMainImg())
-                .myrMaxMember(moyeoraDto.getMyrMaxMember())
+                .myrMaxMember((int)moyeoraDto.getMyrMaxMember())
                 .build();
     }
 }

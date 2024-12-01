@@ -1,6 +1,8 @@
 package com.mwom.moyeora.main.controller;
 
+import com.mwom.moyeora.database.entity.CategoryEntity;
 import com.mwom.moyeora.database.entity.MoyeoraEntity;
+import com.mwom.moyeora.database.entity.SubCategoryEntity;
 import com.mwom.moyeora.main.service.MainService;
 import com.mwom.moyeora.database.vo.MoyeoraVo;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +23,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @RequestMapping("/api/all/main")
 public class MainController {
+
     private final MainService mainService;
 
     @GetMapping("/test")
@@ -65,4 +69,6 @@ public class MainController {
 
         return ResponseEntity.ok(response);
     }
+
+
 }
