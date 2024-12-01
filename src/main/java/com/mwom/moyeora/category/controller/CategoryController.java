@@ -1,8 +1,10 @@
 package com.mwom.moyeora.category.controller;
 
 import com.mwom.moyeora.category.service.CategoryService;
+import com.mwom.moyeora.category.service.OrgService;
 import com.mwom.moyeora.category.service.SubCategoryService;
 import com.mwom.moyeora.database.entity.CategoryEntity;
+import com.mwom.moyeora.database.entity.OrgEntity;
 import com.mwom.moyeora.database.entity.SubCategoryEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +31,11 @@ public class CategoryController {
     @Autowired
     private SubCategoryService subCategoryService;
 
+    @Autowired
+    private OrgService orgService;
+
+
+
     /**
      * 카테고리 검색
      * CategoryController.selectSearchModalData
@@ -48,7 +55,13 @@ public class CategoryController {
         List<SubCategoryEntity> subCategoryList = subCategoryService.selectsubCategoryList();
         searchModalDataMap.put("subCategories", subCategoryList);
 
-        System.out.println("subCategoryList = " + subCategoryList);
+        // 시도 List
+        List<OrgEntity> sidoList = orgService.selectSidoList("N", "1");
+        searchModalDataMap.put("sido", sidoList);
+
+        // 시군구
+        List<OrgEntity> sigunguList = orgService.selectSigunguList("N","2");
+        searchModalDataMap.put("sigungu", sigunguList);
 
         return searchModalDataMap;
     }
