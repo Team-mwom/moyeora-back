@@ -21,16 +21,20 @@ import static javax.persistence.FetchType.LAZY;
 public class MoyeoraPlaceEntity extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
     @Column(name = "MYR_PLACE_SEQ", nullable = true, length = 11)
-    private Long myrPlaceSeq; //모여라장소일련번호
+    private Long myrPlaceSeq; // 모여라장소일련번호
 
-//    @OneToOne(fetch = LAZY)
-//    @JoinColumn(name = "MYR_SEQ")
-//    private MoyeoraEntity moyeora;
+    // @OneToOne(fetch = LAZY)
+    // @JoinColumn(name = "MYR_SEQ")
+    // private MoyeoraEntity moyeora;
 
     @Column(name = "MYR_SEQ", nullable = true, length = 11)
     private Long myrSeq;
+
+    @OneToOne(fetch = LAZY)
+    @JoinColumn(name = "MYR_SEQ", referencedColumnName = "MYR_SEQ", insertable = false, updatable = false)
+    private MoyeoraEntity moyeoraEntity;
 
     @Column(name = "MYR_ADDRESS_NUMBER", nullable = false)
     private String myrAddressNumber;
@@ -56,7 +60,7 @@ public class MoyeoraPlaceEntity extends BaseEntity {
     public static MoyeoraPlaceEntity toEntity(MoyeoraPlaceDto moyeoraPlaceDto) {
         return MoyeoraPlaceEntity.builder()
                 .myrPlaceSeq(moyeoraPlaceDto.getMyrPlaceSeq())
-//                .myrSeq(moyeoraPlaceDto.getMyrSeq())
+                .myrSeq(moyeoraPlaceDto.getMyrSeq())
                 .myrAddressNumber(moyeoraPlaceDto.getMyrAddressNumber())
                 .myrAddressLocation(moyeoraPlaceDto.getMyrAddressLocation())
                 .myrPlace(moyeoraPlaceDto.getMyrPlace())

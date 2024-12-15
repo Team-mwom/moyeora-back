@@ -15,11 +15,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @DynamicInsert
-@Table(name="TB_MOYEORA_INFO")
+@Table(name = "TB_MOYEORA_INFO")
 public class MoyeoraInfoEntity extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다.
     @Column(name = "MYR_INFO_SEQ", nullable = true, length = 11)
     private Long myrInfoSeq;
 
